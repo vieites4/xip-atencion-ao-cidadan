@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Atención al ciudadano</h1>
+        
+        <%@include file="views/addCiudadano.jsp" %>
     </body>
 </html>
