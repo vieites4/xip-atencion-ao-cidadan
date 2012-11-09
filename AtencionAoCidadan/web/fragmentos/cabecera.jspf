@@ -1,0 +1,7 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<header>
+    <img src="images/corporacion.jpg" alt="Escudo do concello"/>
+    <h1>Atención ao Cidadán</h1>
+    <h2>Concello de Antas de Ulla</h2>
+</header>

@@ -1,0 +1,78 @@
+/* 
+    Document   : principal
+    Created on : 08-nov-2012, 21:44:56
+    Author     : Equipo XIP
+*/
+
+html { 
+    display: block;
+    font-family: sans-serif;
+    background-color: lightblue;
+}
+
+body {
+    background-color: #fefefe;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px 40px;
+    width: 75%;
+}
+
+header {
+    overflow: hidden;
+}
+
+header img {
+    display: block;
+    float: left;
+    margin: 0 8px 0 0;
+    height: 140px;
+}
+
+header h1 {
+    padding: 20px 0 0 0;
+}
+
+nav ul {
+    background-color: #323232;
+    border-bottom: 5px solid #dee;
+    border-top: 2px solid #deeeee;
+    float: left;
+    clear: left;
+    padding: 0;
+    width: 100%;
+}
+
+nav ul li{
+    list-style: none;
+}
+
+nav ul li a{
+    border-right: 1px solid #abb;
+    display: block;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 18px 10px;
+    text-align: center;
+    width: auto;
+}
+
+nav a {
+    color: #abb;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: gray;
+    cursor: pointer;
+    color: #bcc;
+}
+
+footer {
+    clear: left;
+    color: gray;
+    font-size: .8em;
+    text-align: center;
+}
+
