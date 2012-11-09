@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
-import dao.DAOCiudadanos;
 import helpers.DAOHelper;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Ciudadano;
 
 /**
  *
@@ -42,7 +35,6 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         String action = request.getParameter("action");
 
         log.log(Level.INFO, "Request action: {0}", action);
@@ -53,6 +45,16 @@ public class FrontController extends HttpServlet {
         } else if (UPDATE_CIUDADANO.equalsIgnoreCase(action)) {
             daoHelper.onUpdateCiudadano(request, response);
 
+        } else if ("view_alta".equalsIgnoreCase(action)) {    
+            response.sendRedirect("addCiudadano.jsp");
+        } else if ("view_certificado".equalsIgnoreCase(action)) {    
+            response.sendRedirect("getCertificado.jsp");
+        } else if ("view_cambio".equalsIgnoreCase(action)) {    
+            response.sendRedirect("cambioDireccion.jsp");
+        } else if ("view_buscar".equalsIgnoreCase(action)) { 
+            response.sendRedirect("findCiudadano.jsp");
+        } else if ("view_tarefas".equalsIgnoreCase(action)) {    
+            response.sendRedirect("listTarefas.jsp");
         } else {
             log.log(Level.INFO, "No action performed!");
             //@TODO Handle else
