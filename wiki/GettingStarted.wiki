@@ -12,3 +12,14 @@ La estructura de paquetes del lado servidor es:
   * DAO: Clases de acceso a datos
   * Helpers: Encapsulación de la lógica de negocio (no debe ir en el controlador)
   * Model: Clases del modelo anotados para hibernate
+
+
+= Librerías =
+
+Para poder ejecutar correctamente el proyecto después de importarlo en Netbeans hai que añadir las siguientes librerías (en Netbeans, botón  derecho sobre Library -> Add Library):
+
+  * Hibernate
+  * PostgreSQL JDBC Driver
+
+No es necesario descargar nada, las dos vienen con Netbeans.
+
