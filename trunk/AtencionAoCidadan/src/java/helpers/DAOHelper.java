@@ -32,12 +32,12 @@ public class DAOHelper {
             DAOCiudadanos.getInstance().saveOrUpdate(c);
             
             request.getSession().setAttribute("top_message", "Added!");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("addCiudadano.jsp");
             
         } catch (Exception e) {
             log.log(Level.SEVERE, "Error addind ciudadano", e);
             request.getSession().setAttribute("error_cause", e.getMessage());
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("addCiudadano.jsp");
         }
 
 
