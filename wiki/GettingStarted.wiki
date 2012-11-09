@@ -23,3 +23,12 @@ Para poder ejecutar correctamente el proyecto después de importarlo en Netbeans
 
 No es necesario descargar nada, las dos vienen con Netbeans.
 
+
+= Documentación =
+
+Manual de referencia de Hibernate Core :
+  * http://docs.jboss.org/hibernate/core/3.6/reference/es-ES/html_single/
+
+Manual de referencia de Hibernate Annotatios, para saber como anotar las clases java:
+
+  * http://docs.jboss.org/hibernate/annotations/3.5/reference/en/html_single/
