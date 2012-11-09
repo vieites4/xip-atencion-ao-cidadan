@@ -8,7 +8,7 @@ Vistas JSP --> Controlador Servlet --> Modelo Clases Java --> Persistencia Hiber
 
 La estructura de paquetes del lado servidor es:
 
-*Servlet: Servlets y otras clases relaccionadas con el control
-*DAO: Clases de acceso a datos
-*Helpers: Encapsulación de la lógica de negocio (no debe ir en el controlador)
-*Model: Clases del modelo anotados para hibernate
+* Servlet: Servlets y otras clases relaccionadas con el control
+* DAO: Clases de acceso a datos
+* Helpers: Encapsulación de la lógica de negocio (no debe ir en el controlador)
+* Model: Clases del modelo anotados para hibernate
