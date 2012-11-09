@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Arquitectura =
+
+Modelo cliente servidor básico.
+
+Vistas JSP --> Controlador Servlet --> Modelo Clases Java --> Persistencia Hibernate --> PostgreSQL.
+
+La estructura de paquetes del lado servidor es:
+
+Servlet: Servlets y otras clases relaccionadas con el control
+DAO: Clases de acceso a datos
+Helpers: Encapsulación de la lógica de negocio (no debe ir en el controlador)
+Model: Clases del modelo anotados para hibernate
+
