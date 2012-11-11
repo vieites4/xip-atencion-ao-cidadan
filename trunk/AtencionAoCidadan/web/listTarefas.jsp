@@ -15,15 +15,7 @@
                 <div class="main_center">
                     <h2>Lista de tarefas</h2>
                     <%@include file="fragmentos/messages.jspf" %>
-                    <form action="FrontController" method="post">
-                        Nombre<br>
-                        <input name="name" type="text"/><br/>
-                        Apellidos<br/>
-                        <input name="surname" type="text"/><br/>
-                        Nombre<br>
-                        <input type="hidden" name="action" value="add_ciudadano"/>
-                        <input type="submit" value="Dar de alta en el padrón"/>
-                    </form>
+                    
 
                 </div>
                 <div class="clr"></div>

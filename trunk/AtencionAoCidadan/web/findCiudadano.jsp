@@ -16,13 +16,15 @@
                     <h2>Buscar ciudadano</h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
-                        Nombre<br>
-                        <input name="name" type="text"/><br/>
-                        Apellidos<br/>
-                        <input name="surname" type="text"/><br/>
-                        Nombre<br>
-                        <input type="hidden" name="action" value="add_ciudadano"/>
-                        <input type="submit" value="Dar de alta en el padrón"/>
+                        <input type="hidden" name="action" value="search_ciudadano"/>
+                        <!--<label>Nombre</label>
+                        <input name="name" type="text" /><br/>
+                        <label>Apellidos</label>
+                        <input name="surname" type="text"/><br/>-->
+                        <label>DNI</label>
+                        <input name="dni" type="text"/><br/>
+                        <input type="reset" value="Borrar" />
+                        <input type="submit" value="Buscar"/>
                     </form>
 
                 </div>
