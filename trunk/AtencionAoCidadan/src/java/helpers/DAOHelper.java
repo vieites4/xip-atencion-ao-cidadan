@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package helpers;
 
 import dao.DAOCiudadanos;
@@ -28,7 +24,8 @@ public class DAOHelper {
             Ciudadano c = new Ciudadano();
             c.setNombre(request.getParameter("name")); // 
             c.setApellidos(request.getParameter("surname")); // ;
-
+            c.setDni(request.getParameter("dni"));
+            
             DAOCiudadanos.getInstance().saveOrUpdate(c);
             
             request.getSession().setAttribute("top_message", "Added!");
@@ -60,4 +57,20 @@ public class DAOHelper {
 
 
     }
+    
+    public void onSearchCiudadano(HttpServletRequest request, HttpServletResponse response) {
+
+        //String nombre = request.getParameter("name");
+        //String apellidos = request.getParameter("surname");
+        String dni = request.getParameter("dni");
+        try {
+            DAOCiudadanos.getInstance().getByDni(dni);
+        } catch (Exception e) {
+            // log error
+            // redirect to error page or show error message
+        }
+
+
+    }
+    
 }

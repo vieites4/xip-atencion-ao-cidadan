@@ -23,6 +23,7 @@ public class FrontController extends HttpServlet {
     // ACTIONS
     private static String ADD_CIUDADANO = "ADD_CIUDADANO";
     private static String UPDATE_CIUDADANO = "UPDATE_CIUDADANO";
+    private static String SEARCH_CIUDADANO = "SEARCH_CIUDADANO";
     private static DAOHelper daoHelper = new DAOHelper();
 
     /** 
@@ -44,7 +45,8 @@ public class FrontController extends HttpServlet {
 
         } else if (UPDATE_CIUDADANO.equalsIgnoreCase(action)) {
             daoHelper.onUpdateCiudadano(request, response);
-
+        } else if (SEARCH_CIUDADANO.equalsIgnoreCase(action)){
+            daoHelper.onSearchCiudadano(request, response);
         } else if ("view_alta".equalsIgnoreCase(action)) {    
             response.sendRedirect("addCiudadano.jsp");
         } else if ("view_certificado".equalsIgnoreCase(action)) {    
