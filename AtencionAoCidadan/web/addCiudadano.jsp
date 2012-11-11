@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,11 +25,13 @@
                     <h2>Alta no padrón municipal</h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
-                        <input type="hidden" name="action" value="add_ciudadano"/>
-                        <p>Nombre</p>
-                        <p><input name="name" type="text"/></p>
-                        <p>Apellidos</p>
-                        <p><input name="surname" type="text"/></p>
+                        <input type="hidden" name="action" value="search_ciudadano"/>
+                        <label>Nombre</label>
+                        <input name="name" type="text" value="${ciudadano.nombre}"/><br/>
+                        <label>Apellidos</label>
+                        <input name="surname" type="text" value="${ciudadano.apellidos}"/><br/>
+                        <label>DNI</label>
+                        <input name="dni" type="text" value="${ciudadano.dni}"/><br/>
                         <p><input type="submit" value="Dar de alta en el padrón"/></p>
                     </form>
 
