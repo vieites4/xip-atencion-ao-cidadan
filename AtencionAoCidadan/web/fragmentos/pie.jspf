@@ -1,2 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
-<footer>Traballo de Xestión Integral de Proxectos</footer>
+
+<footer class="footer">
+  <div class="footer_resize">
+    <p class="leftt">© Copyright . All Rights Reserved. <a href="#"> Home</a> | <a href="#">Contact</a> | <a href="#">RSS </a></p>
+    <p class="right">Xestión Integral de Proxectos</p>
+    <div class="clr"></div>
+  </div>
+  <div class="clr"></div>
+</footer>

@@ -13,9 +13,14 @@
         <title>Atención ao cidadán</title>
     </head>
     <body>
-        <%@include file="fragmentos/cabecera.jspf" %>
-        <%@include file="fragmentos/menuAdministrativo.jspf" %>
-        <%@include file="fragmentos/messages.jspf" %>
-        <%@include file="fragmentos/pie.jspf" %>
+        <div class="main">
+            <div class="main_resize">
+                <%@include file="fragmentos/cabecera.jspf" %>
+                <%@include file="fragmentos/messages.jspf" %>
+                <div class="main_center">asf</div>
+                <div class="clr"></div>
+            </div>
+            <%@include file="fragmentos/pie.jspf" %>
+        </div>
     </body>
 </html>

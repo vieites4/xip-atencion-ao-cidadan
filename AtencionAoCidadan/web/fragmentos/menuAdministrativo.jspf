@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" %>
-<nav>
+<nav class="menu">
     <ul>
         <li><a href="FrontController?action=view_alta">Alta no padrón</a></li>
         <!--<li><a href="FrontController?action=view_certificado">Certificado</a></li>

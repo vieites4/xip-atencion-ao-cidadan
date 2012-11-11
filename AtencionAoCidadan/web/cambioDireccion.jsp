@@ -7,22 +7,28 @@
         <title>Atención ao cidadán</title>
     </head>
     <body>
-        <%@include file="fragmentos/cabecera.jspf" %>
-        <%@include file="fragmentos/menuAdministrativo.jspf" %>
-        <h2>Cambio de dirección</h2>
-        <%@include file="fragmentos/messages.jspf" %>
-        <div>
-            <form action="FrontController" method="post">
-                Nombre<br>
-                <input name="name" type="text"/><br/>
-                Apellidos<br/>
-                <input name="surname" type="text"/><br/>
-                Nombre<br>
-                <input type="hidden" name="action" value="change_direccion"/>
-                <input type="submit" value="Enviar"/>
-            </form>
+        <div class="main">
+            <div class="main_resize">
+                <%@include file="fragmentos/cabecera.jspf" %>
+                <%@include file="fragmentos/messages.jspf" %>
+          
+                <div class="main_center">
+                    <h2>Cambio de dirección</h2>
+                    <%@include file="fragmentos/messages.jspf" %>
+                    <form action="FrontController" method="post">
+                        Nombre<br>
+                        <input name="name" type="text"/><br/>
+                        Apellidos<br/>
+                        <input name="surname" type="text"/><br/>
+                        Nombre<br>
+                        <input type="hidden" name="action" value="change_direccion"/>
+                        <input type="submit" value="Enviar"/>
+                    </form>
 
+                </div>
+                <div class="clr"></div>
+            </div>
+            <%@include file="fragmentos/pie.jspf" %>
         </div>
-        <%@include file="fragmentos/pie.jspf" %>
     </body>
 </html>
