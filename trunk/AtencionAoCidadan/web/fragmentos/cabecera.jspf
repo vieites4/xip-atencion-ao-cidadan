@@ -1,7 +1,14 @@
 <%@ page pageEncoding="UTF-8" %>
 
-<header>
-    <img src="images/corporacion.jpg" alt="Escudo do concello"/>
+<header class="header">
+    <div class="logo"><a href="index.html"><img src="images/corporacion.jpg" height="74" border="0" alt="logo" /></a></div>
     <h1>Atención ao Cidadán</h1>
     <h2>Concello de Antas de Ulla</h2>
+    <div class="clr"></div>
+    <%@include file="menuAdministrativo.jspf" %>
+    <div class="click">
+        <p>Click here to live Support Tell Free 1-866-123-675</p>
+    </div>
+  <div class="clr"></div>
 </header>
+<div class="clr"></div>

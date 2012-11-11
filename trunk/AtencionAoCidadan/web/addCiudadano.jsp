@@ -13,21 +13,29 @@
         <title>Atención ao cidadán</title>
     </head>
     <body>
-        <%@include file="fragmentos/cabecera.jspf" %>
-        <%@include file="fragmentos/menuAdministrativo.jspf" %>
-        <h2>Alta no padrón municipal</h2>
-        <%@include file="fragmentos/messages.jspf" %>
-        <div>
-            <form action="FrontController" method="post">
-                Nombre<br>
-                <input name="name" type="text"/><br/>
-                Apellidos<br/>
-                <input name="surname" type="text"/><br/>
-                <input type="hidden" name="action" value="add_ciudadano"/>
-                <input type="submit" value="Dar de alta en el padrón"/>
-            </form>
+        
+        <div class="main">
+            <div class="main_resize">
+                <%@include file="fragmentos/cabecera.jspf" %>
+                <%@include file="fragmentos/messages.jspf" %>
 
-        </div>
+            
+                <div class="main_center">
+                    <h2>Alta no padrón municipal</h2>
+                    <%@include file="fragmentos/messages.jspf" %>
+                    <form action="FrontController" method="post">
+                        <input type="hidden" name="action" value="add_ciudadano"/>
+                        <p>Nombre</p>
+                        <p><input name="name" type="text"/></p>
+                        <p>Apellidos</p>
+                        <p><input name="surname" type="text"/></p>
+                        <p><input type="submit" value="Dar de alta en el padrón"/></p>
+                    </form>
+
+                </div>
+                <div class="clr"></div>
+            </div>
         <%@include file="fragmentos/pie.jspf" %>
+        </div>
     </body>
 </html>
