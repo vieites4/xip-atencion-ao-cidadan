@@ -1,4 +1,11 @@
+<%-- 
+    Document   : addCiudadano
+    Created on : 09-nov-2012, 11:06:15
+    Author     : joseangel.pineiro
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,26 +14,23 @@
         <title>Atención ao cidadán</title>
     </head>
     <body>
+        
         <div class="main">
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
                 <div class="main_center">
-                    <h2>Cambio de dirección</h2>
+                    <h2>Ciudadano - <c:out value="${ciudadano.dni}"></c:out></h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
-                        Nombre<br>
-                        <input name="name" type="text"/><br/>
-                        Apellidos<br/>
-                        <input name="surname" type="text"/><br/>
-                        Nombre<br>
-                        <input type="hidden" name="action" value="change_direccion"/>
-                        <input type="submit" value="Enviar"/>
+                        <%@include file="fragmentos/ciudadanoFields.jspf" %>
+                        <input type="hidden" name="action" value="alter_ciudadano"/>
+                        <input type="hidden" name="id" value="${ciudadano.id}" />
+                        <p><input type="submit" value="Guardar cambios"/></p>
                     </form>
-
                 </div>
                 <div class="clr"></div>
             </div>
-            <%@include file="fragmentos/pie.jspf" %>
+        <%@include file="fragmentos/pie.jspf" %>
         </div>
     </body>
 </html>

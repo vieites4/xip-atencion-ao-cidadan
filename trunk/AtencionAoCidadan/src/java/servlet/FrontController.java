@@ -4,11 +4,14 @@ import helpers.DAOHelper;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Usuario;
 
 /**
  *
@@ -36,31 +39,40 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
         String action = request.getParameter("action");
-
+        String dir = "index.jsp";
         log.log(Level.INFO, "Request action: {0}", action);
         
+        //TODO: borrar esto cuando haya inicio de sesion
+        HttpSession session = request.getSession(true);
+        session.setAttribute("usuario", new Usuario());
+        
         if (ADD_CIUDADANO.equalsIgnoreCase(action)) {
-            daoHelper.onAddCiudadano(request, response);
-
+            dir = daoHelper.onAddCiudadano(request, response);
         } else if (UPDATE_CIUDADANO.equalsIgnoreCase(action)) {
-            daoHelper.onUpdateCiudadano(request, response);
+            dir = daoHelper.onUpdateCiudadano(request, response);
         } else if (SEARCH_CIUDADANO.equalsIgnoreCase(action)){
-            daoHelper.onSearchCiudadano(request, response);
+            dir = daoHelper.onSearchCiudadano(request, response);
+        
+        //Redirección a vistas
         } else if ("view_alta".equalsIgnoreCase(action)) {    
-            response.sendRedirect("addCiudadano.jsp");
-        } else if ("view_certificado".equalsIgnoreCase(action)) {    
-            response.sendRedirect("getCertificado.jsp");
-        } else if ("view_cambio".equalsIgnoreCase(action)) {    
-            response.sendRedirect("cambioDireccion.jsp");
+            dir = "addCiudadano.jsp";
+        } else if ("view_cert_padron".equalsIgnoreCase(action)) {    
+            dir = "getCertificado.jsp";
+        } else if ("view_direccion".equalsIgnoreCase(action)) {    
+            dir = "cambioDireccion.jsp";
         } else if ("view_buscar".equalsIgnoreCase(action)) { 
-            response.sendRedirect("findCiudadano.jsp");
+            dir = "findCiudadano.jsp";
         } else if ("view_tarefas".equalsIgnoreCase(action)) {    
-            response.sendRedirect("listTarefas.jsp");
+            dir = "listTarefas.jsp";
         } else {
             log.log(Level.INFO, "No action performed!");
             //@TODO Handle else
         }
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"+dir);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

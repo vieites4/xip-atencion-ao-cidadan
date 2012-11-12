@@ -12,12 +12,14 @@ import javax.persistence.Id;
 
 /**
  * Esta clase representa un ciudadano empadronado con todos sus datos del padrón
- * 
+ * http://es.wikipedia.org/wiki/Padr%C3%B3n_municipal_de_habitantes
  * @author joseangel.pineiro
  */
 
 @Entity
 public class Ciudadano implements Serializable {
+    
+    /* Atributos */
     
     /**
      * Id de cada ciudadano
@@ -25,17 +27,19 @@ public class Ciudadano implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-
-    
     private String nombre;
-    
-    private String dni;
-    
     private String apellidos;
-    
+    private String dni; //o pasaporte
+    private String sexo;
     private String direccion;
+    private String nivelInstruccion;
+    private String telefono; //Opcional
+    private String designacion;//Opcional
     
-        
+    /* Constructores */
+    public Ciudadano(){}
+    
+    /* Getters & setters */
     public Long getId() {
         return id;
     }
@@ -99,7 +103,45 @@ public class Ciudadano implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
-    
+
+    /**
+     * 
+     * @return 
+     */
+    public String getNivelInstruccion() {
+        return nivelInstruccion;
+    }
+
+    /**
+     * 
+     * @param nivelInstruccion 
+     */
+    public void setNivelInstruccion(String nivelInstruccion) {
+        this.nivelInstruccion = nivelInstruccion;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDesignacion() {
+        return designacion;
+    }
+
+    public void setDesignacion(String designacion) {
+        this.designacion = designacion;
+    }
     
 }
