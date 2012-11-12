@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -35,6 +33,9 @@ public class Ciudadano implements Serializable {
     private String nivelInstruccion;
     private String telefono; //Opcional
     private String designacion;//Opcional
+    
+    @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+    private Usuario usuario;
     
     /* Constructores */
     public Ciudadano(){}
@@ -142,6 +143,19 @@ public class Ciudadano implements Serializable {
 
     public void setDesignacion(String designacion) {
         this.designacion = designacion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    public void onCreate() {
+        this.usuario = new Usuario();
+        this.usuario.setTipo(TiposUsuarios.Ciudadano);
     }
     
 }

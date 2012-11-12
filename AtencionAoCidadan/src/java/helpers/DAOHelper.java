@@ -1,6 +1,7 @@
 package helpers;
 
 import dao.DAOCiudadanos;
+import dao.DAOUsuarios;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,8 @@ public class DAOHelper {
             c.setDni(request.getParameter("dni"));
             
             DAOCiudadanos.getInstance().saveOrUpdate(c);
+            c.onCreate();
+            DAOUsuarios.getInstance().saveOrUpdate(c.getUsuario());
             
             request.setAttribute("top_message", "Added!");
             return "addCiudadano.jsp";
