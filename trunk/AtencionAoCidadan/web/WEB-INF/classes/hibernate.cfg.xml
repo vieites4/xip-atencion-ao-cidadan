@@ -7,18 +7,13 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/xip-bd</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">admin</property>
-    
-    <!-- Xeración e actualización automática de tablas -->
+    <!-- XeraciÃ³n e actualizaciÃ³n automÃ¡tica de tablas -->
     <property name="hibernate.hbm2ddl.auto">update</property>
-    
-    <!-- Xestión automática do contexto -->
+    <!-- XestiÃ³n automÃ¡tica do contexto -->
     <property name="current_session_context_class">thread</property>
-        
     <!-- Clases a persistir (deben estar correctamente anotadas) -->
-    
     <mapping class="model.Ciudadano"/>
     <mapping class="model.Tarea"/>
     <mapping class="model.Usuario"/>
-    
   </session-factory>
 </hibernate-configuration>
