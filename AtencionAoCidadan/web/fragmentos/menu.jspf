@@ -12,6 +12,8 @@
                     <li><a href="FrontController?action=view_alta">Alta no padrón</a></li>
                     <li><a href="FrontController?action=view_buscar">Buscar contribuínte</a></li>
                     <li><a href="FrontController?action=view_tarefas">Tarefas pendentes</a></li>
+                    <li><a href="FrontController?action=view_listado">Listado cidadáns</a></li>
+                    
                 </c:if>
                 <c:if test="${!usuario.isAdministrativo()}">
                     <li><a href="FrontController?action=view_direccion">Cambio de domicilio</a></li>

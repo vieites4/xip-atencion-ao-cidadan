@@ -66,6 +66,8 @@ public class FrontController extends HttpServlet {
             dir = "findCiudadano.jsp";
         } else if ("view_tarefas".equalsIgnoreCase(action)) {    
             dir = "listTarefas.jsp";
+        } else if ("view_listado".equalsIgnoreCase(action)) {    
+            dir = "listaCiudadanos.jsp";
         } else {
             log.log(Level.INFO, "No action performed!");
             //@TODO Handle else
