@@ -2,7 +2,7 @@
 
 <footer class="footer">
   <div class="footer_resize">
-    <p class="leftt">© Copyright . All Rights Reserved. <a href="#"> Home</a> | <a href="#">Contact</a> | <a href="#">RSS </a></p>
+    <p class="leftt">© Copyright . All Rights Reserved. <a href="index.jsp"> Home</a> </p>
     <p class="right">Xestión Integral de Proxectos</p>
     <div class="clr"></div>
   </div>

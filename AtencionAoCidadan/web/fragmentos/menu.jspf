@@ -1,0 +1,23 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<nav class="menu">
+    <ul>
+        <c:choose>
+            <c:when test="${usuario == null}">
+                <li><a href="FrontController?action=view_login">Iniciar sesión</a></li>
+            </c:when>
+            <c:otherwise>
+                <c:if test="${usuario.isAdministrativo()}">
+                    <li><a href="FrontController?action=view_alta">Alta no padrón</a></li>
+                    <li><a href="FrontController?action=view_buscar">Buscar contribuínte</a></li>
+                    <li><a href="FrontController?action=view_tarefas">Tarefas pendentes</a></li>
+                </c:if>
+                <c:if test="${!usuario.isAdministrativo()}">
+                    <li><a href="FrontController?action=view_direccion">Cambio de domicilio</a></li>
+                    <li><a href="FrontController?action=view_cert_padron">Certificado empadronamiento</a>
+                </c:if>
+            </c:otherwise>
+        </c:choose>
+    </ul>
+</nav>

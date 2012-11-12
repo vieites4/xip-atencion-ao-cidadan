@@ -16,10 +16,7 @@ public class DAOHelper {
 
     static final Logger log = Logger.getLogger(DAOHelper.class.getSimpleName());
 
-    public void onAddCiudadano(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-
-
+    public String onAddCiudadano(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             Ciudadano c = new Ciudadano();
             c.setNombre(request.getParameter("name")); // 
@@ -28,20 +25,18 @@ public class DAOHelper {
             
             DAOCiudadanos.getInstance().saveOrUpdate(c);
             
-            request.getSession().setAttribute("top_message", "Added!");
-            response.sendRedirect("addCiudadano.jsp");
+            request.setAttribute("top_message", "Added!");
+            return "addCiudadano.jsp";
             
         } catch (Exception e) {
             log.log(Level.SEVERE, "Error addind ciudadano", e);
-            request.getSession().setAttribute("error_cause", e.getMessage());
-            response.sendRedirect("addCiudadano.jsp");
+            request.setAttribute("error_cause", e.getMessage());
+            return "addCiudadano.jsp";
         }
-
-
     }
 
     // @TODO Completar
-    public void onUpdateCiudadano(HttpServletRequest request, HttpServletResponse response) {
+    public String onUpdateCiudadano(HttpServletRequest request, HttpServletResponse response) {
 
         try {
             Ciudadano c = new Ciudadano();
@@ -50,24 +45,28 @@ public class DAOHelper {
             // ...
 
             DAOCiudadanos.getInstance().saveOrUpdate(c);
+            return "ciudadano.jsp";
         } catch (Exception e) {
             // log error
             // redirect to error page or show error message
+            return "index.jsp";
         }
 
 
     }
     
-    public void onSearchCiudadano(HttpServletRequest request, HttpServletResponse response) {
+    public String onSearchCiudadano(HttpServletRequest request, HttpServletResponse response) {
 
         //String nombre = request.getParameter("name");
         //String apellidos = request.getParameter("surname");
         String dni = request.getParameter("dni");
         try {
             DAOCiudadanos.getInstance().getByDni(dni);
+            return "ciudadano.jsp";
         } catch (Exception e) {
             // log error
             // redirect to error page or show error message
+            return "findCiudadano.jsp";
         }
 
 

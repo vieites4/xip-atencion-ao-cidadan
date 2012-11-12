@@ -1,13 +1,13 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <header class="header">
-    <div class="logo"><a href="index.html"><img src="images/corporacion.jpg" height="74" border="0" alt="logo" /></a></div>
+    <div class="logo"><a href="index.jsp"><img src="images/corporacion.jpg" height="74" border="0" alt="logo" /></a></div>
     <h1>Atención ao Cidadán</h1>
     <h2>Concello de Antas de Ulla</h2>
     <div class="clr"></div>
-    <%@include file="menuAdministrativo.jspf" %>
+    <%@include file="menu.jspf" %>
     <div class="click">
-        <p>Click here to live Support Tell Free 1-866-123-675</p>
+        <p>Teléfono de atención ao cidadán: 982 379 251</p>
     </div>
   <div class="clr"></div>
 </header>

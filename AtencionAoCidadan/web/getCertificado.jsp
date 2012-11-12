@@ -10,7 +10,6 @@
         <div class="main">
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
-                <%@include file="fragmentos/messages.jspf" %>
                 <div class="main_center">
                     <h2>Certificado de empadronamento</h2>
                     <%@include file="fragmentos/messages.jspf" %>
