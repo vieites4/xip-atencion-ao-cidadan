@@ -30,7 +30,7 @@ public class Ciudadano implements Serializable {
     private String apellidos;
     @Column(unique = true)
     private String dni; //o pasaporte
-    private String sexo;
+    private String sexo; /* F o M */
     private String direccion;
     private String nivelInstruccion;
     private String telefono; //Opcional
