@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
+import java.util.List;
 import model.Ciudadano;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
@@ -73,5 +70,25 @@ public class DAOCiudadanos {
         session.beginTransaction();
         session.saveOrUpdate(c);
         session.getTransaction().commit();
+    }
+    
+    /**
+     * 
+     * @param nombre
+     * @return 
+     */
+    public List<Ciudadano> getByFilters(String nombre){
+        List list = null;
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        // consulta filtrando por ...
+        /*list = (List<Ciudadano>) session.createCriteria(Ciudadano.class).
+                add(Restrictions.like("nombre", nombre)).list();*/
+        list = (List<Ciudadano>) session.createCriteria(Ciudadano.class).list();
+
+        session.getTransaction().commit();
+
+        return list;
     }
 }
