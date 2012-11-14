@@ -155,6 +155,10 @@ public class Ciudadano implements Serializable {
         this.usuario = usuario;
     }
     
+    public String getNombreCompleto(){
+        return nombre + " " + apellidos;
+    }
+    
     public void onCreate() {
         this.usuario = new Usuario();
         this.usuario.setTipo(TiposUsuarios.Ciudadano);
