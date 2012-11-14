@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,6 +28,7 @@ public class Ciudadano implements Serializable {
     private Long id;
     private String nombre;
     private String apellidos;
+    @Column(unique = true)
     private String dni; //o pasaporte
     private String sexo;
     private String direccion;
