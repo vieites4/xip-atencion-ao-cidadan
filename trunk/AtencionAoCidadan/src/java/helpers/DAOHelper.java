@@ -3,6 +3,7 @@ package helpers;
 import dao.DAOCiudadanos;
 import dao.DAOUsuarios;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -64,15 +65,34 @@ public class DAOHelper {
         //String apellidos = request.getParameter("surname");
         String dni = request.getParameter("dni");
         try {
-            DAOCiudadanos.getInstance().getByDni(dni);
-            return "ciudadano.jsp";
+            Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
+            if(c == null){
+                request.setAttribute("top_message", "No se encontró al ciudadano");
+                return "findCiudadano.jsp";
+            }else{
+                request.setAttribute("ciudadano", c);
+                return "ciudadano.jsp";
+            }
         } catch (Exception e) {
-            // log error
-            // redirect to error page or show error message
+            log.log(Level.SEVERE, "Error buscando ciudadano por DNI", e);
+            request.setAttribute("error_cause", e.getMessage());
             return "findCiudadano.jsp";
         }
 
 
+    }
+    
+    public String onListCiudadanos(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String nombre = request.getParameter("name");
+            List<Ciudadano> list = DAOCiudadanos.getInstance().getByFilters(nombre);
+            request.setAttribute("list", list);
+            return "listadoCiudadanos.jsp";
+        } catch (Exception e) {
+            // log error
+            // redirect to error page or show error message
+            return "index.jsp";
+        }
     }
     
 }
