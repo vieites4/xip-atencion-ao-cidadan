@@ -1,7 +1,7 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 <c:choose>
-    <c:when test="${list.isEmpty()}">
+    <c:when test="${list == null || list.isEmpty()}">
         <p>No hay resultados</p>
     </c:when>
     <c:otherwise>
