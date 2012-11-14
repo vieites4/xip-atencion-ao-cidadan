@@ -15,7 +15,7 @@
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
                         <input type="hidden" name="action" value="search_ciudadano"/>
-                        <%@include file="ciudadanoFields.jspf" %>
+                        <%@include file="fragmentos/ciudadanoFields.jspf" %>
                         <input type="reset" value="Borrar" />
                         <input type="submit" value="Buscar"/>
                     </form>

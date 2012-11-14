@@ -19,7 +19,7 @@
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
                 <div class="main_center">
-                    <h2>Ciudadano - <c:out value="${ciudadano.dni}"></c:out></h2>
+                    <h2>Ciudadano - <c:out value="${ciudadano.nombreCompleto}"></c:out></h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
                         <%@include file="fragmentos/ciudadanoFields.jspf" %>
