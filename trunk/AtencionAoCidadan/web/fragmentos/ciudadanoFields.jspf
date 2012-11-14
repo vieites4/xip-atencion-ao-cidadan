@@ -6,6 +6,8 @@
 <input name="surname" type="text" value="${ciudadano.apellidos}"/><br/>
 <label>DNI</label>
 <input name="dni" type="text" value="${ciudadano.dni}"/><br/>
-
+<label>Sexo</label>
+<input type="radio" name="sexo" value="F" />F
+<input type="radio" name="sexo" value="M" />M <br/>
 <!-- TODO: añadir campos que faltan -->
 

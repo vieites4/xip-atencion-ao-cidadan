@@ -60,34 +60,26 @@ public class DAOHelper {
     }
     
     public String onSearchCiudadano(HttpServletRequest request, HttpServletResponse response) {
-
-        //String nombre = request.getParameter("name");
-        //String apellidos = request.getParameter("surname");
-        String dni = request.getParameter("dni");
-        try {
-            Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
-            if(c == null){
-                request.setAttribute("top_message", "No se encontró al ciudadano");
-                return "findCiudadano.jsp";
-            }else{
-                request.setAttribute("ciudadano", c);
-                return "ciudadano.jsp";
-            }
-        } catch (Exception e) {
-            log.log(Level.SEVERE, "Error buscando ciudadano por DNI", e);
-            request.setAttribute("error_cause", e.getMessage());
-            return "findCiudadano.jsp";
-        }
-
-
-    }
-    
-    public String onListCiudadanos(HttpServletRequest request, HttpServletResponse response) {
         try {
             String nombre = request.getParameter("name");
-            List<Ciudadano> list = DAOCiudadanos.getInstance().getByFilters(nombre);
+            String apellidos = request.getParameter("surname");
+            String dni = request.getParameter("dni");
+            String sexo = request.getParameter("sexo");
+            
+            if(dni != null && !dni.isEmpty()){
+                Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
+                if(c == null){
+                    request.setAttribute("top_message", "No se encontró al ciudadano");
+                    return "findCiudadano.jsp";
+                }else{
+                    request.setAttribute("ciudadano", c);
+                    return "ciudadano.jsp";
+                }
+            }
+            
+            List<Ciudadano> list = DAOCiudadanos.getInstance().getByFilters(nombre, apellidos, sexo);
             request.setAttribute("list", list);
-            return "listadoCiudadanos.jsp";
+            return "findCiudadano.jsp";
         } catch (Exception e) {
             // log error
             // redirect to error page or show error message
