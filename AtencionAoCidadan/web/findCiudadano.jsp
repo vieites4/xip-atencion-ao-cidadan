@@ -13,18 +13,10 @@
                 <div class="main_center">
                     <h2>Buscar ciudadano</h2>
                     <%@include file="fragmentos/messages.jspf" %>
-                    <form action="FrontController" method="post">
-                        <input type="hidden" name="action" value="search_ciudadano"/>
-                        <!--<label>Nombre</label>
-                        <input name="name" type="text" /><br/>
-                        <label>Apellidos</label>
-                        <input name="surname" type="text"/><br/>-->
-                        <label>DNI</label>
-                        <input name="dni" type="text"/><br/>
-                        <input type="reset" value="Borrar" />
-                        <input type="submit" value="Buscar"/>
-                    </form>
-
+                    <%@include file="fragmentos/formSearchCiudadano.jspf" %>
+                    <c:if test="${list != null}">
+                        <%@include file="fragmentos/listCiudadanos.jspf" %>
+                    </c:if>
                 </div>
                 <div class="clr"></div>
             </div>
