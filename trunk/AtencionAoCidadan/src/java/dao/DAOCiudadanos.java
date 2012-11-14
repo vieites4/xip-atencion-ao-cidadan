@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 import model.Ciudadano;
+import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -77,15 +78,24 @@ public class DAOCiudadanos {
      * @param nombre
      * @return 
      */
-    public List<Ciudadano> getByFilters(String nombre){
+    public List<Ciudadano> getByFilters(String nombre, String apellidos, String sexo){
         List list = null;
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         // consulta filtrando por ...
-        /*list = (List<Ciudadano>) session.createCriteria(Ciudadano.class).
-                add(Restrictions.like("nombre", nombre)).list();*/
-        list = (List<Ciudadano>) session.createCriteria(Ciudadano.class).list();
+        Criteria c = session.createCriteria(Ciudadano.class);
+        if(nombre != null && !nombre.isEmpty()){
+            c.add(Restrictions.like("nombre", "%" + nombre + "%"));
+        }
+        if(apellidos != null && !apellidos.isEmpty()){
+            c.add(Restrictions.like("apellidos", "%" + apellidos + "%"));
+        }
+        if(sexo != null && !sexo.isEmpty()){
+            c.add(Restrictions.like("sexo", sexo));
+        }
+        /* TODO: resto de filtros */
+        list = (List<Ciudadano>)c.list();
 
         session.getTransaction().commit();
 
