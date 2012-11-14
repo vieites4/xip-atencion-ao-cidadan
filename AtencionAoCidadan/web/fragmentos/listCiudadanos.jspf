@@ -1,0 +1,23 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<c:choose>
+    <c:when test="${list.isEmpty()}">
+        <p>No hay resultados</p>
+    </c:when>
+    <c:otherwise>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</td>
+            </tr>
+            <c:forEach var="c" items="${list}">
+                <tr>    
+                    <td>${c.nombre}</td>
+                    <td>${c.apellidos}</td>
+                    <td>${c.dni}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:otherwise>
+</c:choose>
