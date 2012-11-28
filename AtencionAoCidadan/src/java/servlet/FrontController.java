@@ -27,6 +27,7 @@ public class FrontController extends HttpServlet {
     private static String ADD_CIUDADANO = "ADD_CIUDADANO";
     private static String UPDATE_CIUDADANO = "UPDATE_CIUDADANO";
     private static String SEARCH_CIUDADANO = "SEARCH_CIUDADANO";
+    private static String Listo_CIUDADANO = "Listo_CIUDADANO";
     private static String VIEW_CIUDADANO = "VIEW_CIUDADANO";
     private static DAOHelper daoHelper = new DAOHelper();
 
@@ -55,6 +56,8 @@ public class FrontController extends HttpServlet {
             dir = daoHelper.onUpdateCiudadano(request, response);
         } else if (SEARCH_CIUDADANO.equalsIgnoreCase(action)){
             dir = daoHelper.onSearchCiudadano(request, response);
+        } else if (Listo_CIUDADANO.equalsIgnoreCase(action)){
+            dir = daoHelper.onTodosCiudadano(request, response);
         } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
             //TODO : paso id
             dir = "ciudadano.jsp";

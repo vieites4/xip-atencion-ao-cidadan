@@ -70,12 +70,41 @@ public class DAOHelper {
 
     }
 
+    public String onTodosCiudadano(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String nombre = request.getParameter("name");
+            String apellidos = request.getParameter("surname");
+            String dni = request.getParameter("dni");
+            String sexo = request.getParameter("sexo");
+            
+
+            if (dni != null && !dni.isEmpty()) {
+                Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
+                if (c == null) {
+                    request.setAttribute("top_message", "No se encontró al ciudadano");
+                    return "listadoCiudadanos.jsp";
+                } else {
+                    request.setAttribute("ciudadano", c);
+                    return "ciudadano.jsp";
+                }
+            }
+
+            List<Ciudadano> list = DAOCiudadanos.getInstance().getByFilters(nombre, apellidos, sexo);
+            request.setAttribute("list", list);
+            return "listadoCiudadanos.jsp";
+        } catch (Exception e) {
+            // log error
+            // redirect to error page or show error message
+            return "index.jsp";
+        }
+    }
     public String onSearchCiudadano(HttpServletRequest request, HttpServletResponse response) {
         try {
             String nombre = request.getParameter("name");
             String apellidos = request.getParameter("surname");
             String dni = request.getParameter("dni");
             String sexo = request.getParameter("sexo");
+            
 
             if (dni != null && !dni.isEmpty()) {
                 Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
@@ -97,4 +126,5 @@ public class DAOHelper {
             return "index.jsp";
         }
     }
+    
 }
