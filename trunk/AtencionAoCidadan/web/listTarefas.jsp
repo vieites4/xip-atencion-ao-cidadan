@@ -13,9 +13,14 @@
             
                 <div class="main_center">
                     <h2>Lista de tarefas</h2>
-                    <%@include file="fragmentos/messages.jspf" %>
-                    
 
+                    <form action="FrontController" method="post">
+                        <input type="hidden" name="action" value="view_tarefas"/>
+                        <input type="submit" value="Buscar"/>
+                    </form>
+                    <c:if test="${list != null}">
+                        <%@include file="fragmentos/listTarefas.jspf" %>
+                    </c:if>
                 </div>
                 <div class="clr"></div>
             </div>

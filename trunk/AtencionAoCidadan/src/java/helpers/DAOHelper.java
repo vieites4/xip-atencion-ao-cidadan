@@ -1,6 +1,8 @@
 package helpers;
 
 import dao.DAOCiudadanos;
+import dao.DAOTareas;
+import model.Tarea;
 import dao.DAOUsuarios;
 import java.io.IOException;
 import java.util.List;
@@ -77,18 +79,6 @@ public class DAOHelper {
             String dni = request.getParameter("dni");
             String sexo = request.getParameter("sexo");
             
-
-            if (dni != null && !dni.isEmpty()) {
-                Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
-                if (c == null) {
-                    request.setAttribute("top_message", "No se encontró al ciudadano");
-                    return "listadoCiudadanos.jsp";
-                } else {
-                    request.setAttribute("ciudadano", c);
-                    return "ciudadano.jsp";
-                }
-            }
-
             List<Ciudadano> list = DAOCiudadanos.getInstance().getByFilters(nombre, apellidos, sexo);
             request.setAttribute("list", list);
             return "listadoCiudadanos.jsp";
@@ -126,5 +116,24 @@ public class DAOHelper {
             return "index.jsp";
         }
     }
+//        public String onSearchTarea(HttpServletRequest request, HttpServletResponse response) {
+//            try {
+//                Long id = request.getParameter("id");
+//
+//                Date fecha=request.getParameter("fecha");
+//                String tipo = request.getParameter("tipo");
+//                String descripcion = request.getParameter("descripcion");
+//                String estado = request.getParameter("estado");
+//
+//
+//                List<Tarea> list = DAOTareas.getInstance().getByFilters(id,tipo, descripcion, estado, fecha);
+//                request.setAttribute("list", list);
+//                return "listTarefas.jsp";
+//            } catch (Exception e) {
+//                // log error
+//                // redirect to error page or show error message
+//                return "index.jsp";
+//            }
+//        }
     
 }

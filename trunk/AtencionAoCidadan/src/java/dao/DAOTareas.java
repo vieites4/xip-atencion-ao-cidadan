@@ -4,6 +4,11 @@
  */
 package dao;
 
+import java.util.Date;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
 import model.Tarea;
 import org.hibernate.classic.Session;
 
@@ -52,4 +57,30 @@ public class DAOTareas {
         session.saveOrUpdate(t);
         session.getTransaction().commit();
     }
+    
+     public List<Tarea> getByFilt(Long id, String tipo, String descripcion,String estado, Date fecha){
+        List list = null;
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        // consulta filtrando por ...
+        Criteria c = session.createCriteria(Tarea.class);
+        
+        if(tipo != null && !tipo.isEmpty()){
+            c.add(Restrictions.like("tipo", "%" + tipo + "%"));
+        }
+        if(descripcion != null && !descripcion.isEmpty()){
+            c.add(Restrictions.like("descripcion", "%" + descripcion + "%"));
+        }
+        /* TODO: resto de filtros */
+        list = (List<Tarea>)c.list();
+
+        session.getTransaction().commit();
+
+        return list;
+    }
+    
+    
+    
+    
 }
