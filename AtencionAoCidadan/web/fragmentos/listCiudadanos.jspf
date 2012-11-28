@@ -26,7 +26,7 @@
                     <td>${c.telefono}</td>
                     <td>${c.nivelInstruccion}</td>
                     <td>${c.designacion}</td>
-                    <td><a href="FrontController?action=ver_ciudadano&id=${c.id}">Ver</a></td>
+                    <td><a href="FrontController?action=view_ciudadano&id=${c.id}">Ver</a></td>
                 </tr>
             </c:forEach>
         </table>
