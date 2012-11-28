@@ -1,7 +1,9 @@
 package servlet;
 
+import dao.DAORecibos;
 import helpers.DAOHelper;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Recibo;
 import model.Usuario;
 
 /**
@@ -62,8 +65,7 @@ public class FrontController extends HttpServlet {
         } else if (Listo_tarefa.equalsIgnoreCase(action)){
             dir = daoHelper.onSearchTarea(request, response);
         } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
-            //TODO : paso id
-            dir = "ciudadano.jsp";
+            dir = daoHelper.onViewCiudadano(request, response);
            
         //Redirección a vistas
               }  
@@ -81,6 +83,21 @@ public class FrontController extends HttpServlet {
             dir = "listTarefas.jsp";
         } else if ("view_listado".equalsIgnoreCase(action)) {    
             dir = "listadoCiudadanos.jsp";
+            
+        //Recibos
+        } else if ("view_recibos".equalsIgnoreCase(action)) {
+            Long ciudadanoId = Long.parseLong(request.getParameter("ciudadano"));
+            request.setAttribute("ciudadano", ciudadanoId);
+            List<Recibo> recibos = DAORecibos.getInstance().getByFilters(ciudadanoId);
+            request.setAttribute("listRecibos", recibos);
+            dir = "listRecibos.jsp";
+            
+        } else if ("view_recibo".equalsIgnoreCase(action)) {
+            Long id = Long.parseLong(request.getParameter("id"));
+            Recibo r = DAORecibos.getInstance().getById(id);
+            request.setAttribute("recibo", r);
+            dir = "recibo.jsp";
+            
         } else {
             log.log(Level.INFO, "No action performed!");
             //@TODO Handle else
