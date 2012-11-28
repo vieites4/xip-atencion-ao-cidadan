@@ -27,6 +27,7 @@
                         <input type="hidden" name="id" value="${ciudadano.id}" />
                         <p><input type="submit" value="Guardar cambios"/></p>
                     </form>
+                    <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${ciudadano.id}">Ver recibos y autoliquidaciones del ciudadano</a>
                 </div>
                 <div class="clr"></div>
             </div>
