@@ -86,17 +86,10 @@ public class FrontController extends HttpServlet {
             
         //Recibos
         } else if ("view_recibos".equalsIgnoreCase(action)) {
-            Long ciudadanoId = Long.parseLong(request.getParameter("ciudadano"));
-            request.setAttribute("ciudadano", ciudadanoId);
-            List<Recibo> recibos = DAORecibos.getInstance().getByFilters(ciudadanoId);
-            request.setAttribute("listRecibos", recibos);
-            dir = "listRecibos.jsp";
+            dir = daoHelper.onListRecibos(request, response);
             
         } else if ("view_recibo".equalsIgnoreCase(action)) {
-            Long id = Long.parseLong(request.getParameter("id"));
-            Recibo r = DAORecibos.getInstance().getById(id);
-            request.setAttribute("recibo", r);
-            dir = "recibo.jsp";
+            dir = daoHelper.onViewRecibo(request, response);
             
         } else {
             log.log(Level.INFO, "No action performed!");

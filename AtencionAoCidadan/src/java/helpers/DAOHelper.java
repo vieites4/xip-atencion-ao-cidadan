@@ -1,11 +1,10 @@
 package helpers;
 
 import dao.DAOCiudadanos;
+import dao.DAORecibos;
 import dao.DAOTareas;
-import model.Tarea;
 import dao.DAOUsuarios;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Ciudadano;
 import model.Recibo;
+import model.Tarea;
 
 /**
  *
@@ -157,6 +157,22 @@ public class DAOHelper {
             // redirect to error page or show error message
             return "index.jsp";
         }
+    }
+    
+    public String onListRecibos(HttpServletRequest request, HttpServletResponse response) {
+        Long ciudadanoId = Long.parseLong(request.getParameter("ciudadano"));
+        request.setAttribute("ciudadano", ciudadanoId);
+        List<Recibo> recibos = DAORecibos.getInstance().getByFilters(ciudadanoId);
+        request.setAttribute("listRecibos", recibos);
+        return "listRecibos.jsp";
+    }
+    
+    
+    public String onViewRecibo(HttpServletRequest request, HttpServletResponse response) {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Recibo r = DAORecibos.getInstance().getById(id);
+        request.setAttribute("recibo", r);
+        return "recibo.jsp";
     }
 
 }
