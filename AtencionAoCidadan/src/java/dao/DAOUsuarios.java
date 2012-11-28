@@ -21,8 +21,6 @@ public class DAOUsuarios {
     public static DAOUsuarios getInstance() {
         return instance;
     }
-
-    
     
     /**
      * Obtiene una tarea por id

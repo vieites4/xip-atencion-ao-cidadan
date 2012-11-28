@@ -20,20 +20,31 @@ public class DAOHelper {
 
     public String onAddCiudadano(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
+
+
             Ciudadano c = new Ciudadano();
-            c.setNombre(request.getParameter("name")); // 
-            c.setApellidos(request.getParameter("surname")); // ;
+            c.setNombre(request.getParameter("name"));
+            c.setApellidos(request.getParameter("surname"));
             c.setDni(request.getParameter("dni"));
+            c.setDireccion(request.getParameter("direccion"));
+            c.setDesignacion(request.getParameter("designacion"));
+            c.setTelefono(request.getParameter("telefono"));
+            c.setNivelInstruccion(request.getParameter("nivelInstruccion"));
+
+            if (c.validate()) {
+                DAOCiudadanos.getInstance().saveOrUpdate(c);
+                c.onCreate();
+                DAOUsuarios.getInstance().saveOrUpdate(c.getUsuario());
+                request.setAttribute("top_message", "Ciudadano '" + c.getDni() + "' registrado correctamente!");
+            }
+            else{
+                request.setAttribute("error_cause", "Los datos proporcionados no son válidos");
+            }
             
-            DAOCiudadanos.getInstance().saveOrUpdate(c);
-            c.onCreate();
-            DAOUsuarios.getInstance().saveOrUpdate(c.getUsuario());
-            
-            request.setAttribute("top_message", "Added!");
             return "addCiudadano.jsp";
-            
+
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Error addind ciudadano", e);
+            log.log(Level.SEVERE, "Error al guardar los datos de un ciudadano", e);
             request.setAttribute("error_cause", e.getMessage());
             return "addCiudadano.jsp";
         }
@@ -58,25 +69,25 @@ public class DAOHelper {
 
 
     }
-    
+
     public String onSearchCiudadano(HttpServletRequest request, HttpServletResponse response) {
         try {
             String nombre = request.getParameter("name");
             String apellidos = request.getParameter("surname");
             String dni = request.getParameter("dni");
             String sexo = request.getParameter("sexo");
-            
-            if(dni != null && !dni.isEmpty()){
+
+            if (dni != null && !dni.isEmpty()) {
                 Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
-                if(c == null){
+                if (c == null) {
                     request.setAttribute("top_message", "No se encontró al ciudadano");
                     return "findCiudadano.jsp";
-                }else{
+                } else {
                     request.setAttribute("ciudadano", c);
                     return "ciudadano.jsp";
                 }
             }
-            
+
             List<Ciudadano> list = DAOCiudadanos.getInstance().getByFilters(nombre, apellidos, sexo);
             request.setAttribute("list", list);
             return "findCiudadano.jsp";
@@ -86,5 +97,4 @@ public class DAOHelper {
             return "index.jsp";
         }
     }
-    
 }
