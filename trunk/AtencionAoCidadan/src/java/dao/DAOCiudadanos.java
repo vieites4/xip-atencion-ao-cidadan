@@ -31,7 +31,10 @@ public class DAOCiudadanos {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        c = (Ciudadano) session.load(Ciudadano.class, id);
+        //c = (Ciudadano) session.load(Ciudadano.class, id);
+        c = (Ciudadano) session.createCriteria(Ciudadano.class).
+                add(Restrictions.idEq(id)).
+                uniqueResult();
         session.getTransaction().commit();
 
         return c;
