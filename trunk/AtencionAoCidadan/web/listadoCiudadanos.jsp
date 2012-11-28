@@ -19,7 +19,7 @@
                         <input type="submit" value="Buscar"/>
                     </form>
                     <c:if test="${list != null}">
-                        <%@include file="fragmentos/listCiudadanos_1.jspf" %>
+                        <%@include file="fragmentos/listCiudadanos.jspf" %>
                     </c:if>
                 </div>
                 <div class="clr"></div>

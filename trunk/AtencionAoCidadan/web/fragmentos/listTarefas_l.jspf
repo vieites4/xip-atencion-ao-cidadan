@@ -8,20 +8,22 @@
     <c:otherwise>
         <table>
             <tr>
-                <th>Nivel Inst.</th>
-                <th>Designación</th>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+
+                <th>Fecha</th>
                 <th></th>
             </tr>
             <c:forEach var="c" items="${list}">
                 <tr>    
-                    <td>${c.nombre}</td>
-                    <td>${c.apellidos}</td>
-                    <td>${c.dni}</td>
-                    <td>${c.direccion}</td>
-                    <td>${c.telefono}</td>
-                    <td>${c.nivelInstruccion}</td>
-                    <td>${c.designacion}</td>
-                    <td><a href="FrontController?action=ver_ciudadano&id=${c.id}">Ver</a></td>
+                    <td>${c.id}</td>
+                    <td>${c.tipo}</td>
+                    <td>${c.descripcion}</td>
+                    <td>${c.estado}</td>
+                    <td>${c.fecha}</td>
+                    <td><a href="FrontController?action=view_tarefas&id=${c.id}">Ver</a></td>
                 </tr>
             </c:forEach>
         </table>

@@ -64,16 +64,16 @@ public class DAOTareas {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         // consulta filtrando por ...
-        Criteria c = session.createCriteria(Tarea.class);
+        Criteria t = session.createCriteria(Tarea.class);
         
         if(tipo != null && !tipo.isEmpty()){
-            c.add(Restrictions.like("tipo", "%" + tipo + "%"));
+            t.add(Restrictions.like("tipo", "%" + tipo + "%"));
         }
         if(descripcion != null && !descripcion.isEmpty()){
-            c.add(Restrictions.like("descripcion", "%" + descripcion + "%"));
+            t.add(Restrictions.like("descripcion", "%" + descripcion + "%"));
         }
         /* TODO: resto de filtros */
-        list = (List<Tarea>)c.list();
+        list = (List<Tarea>)t.list();
 
         session.getTransaction().commit();
 
