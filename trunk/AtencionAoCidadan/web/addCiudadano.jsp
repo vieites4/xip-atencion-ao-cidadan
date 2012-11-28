@@ -27,6 +27,8 @@
                         <p><input type="submit" value="Dar de alta en el padrón"/></p>
                     </form>
 
+                        
+                       
                 </div>
                 <div class="clr"></div>
             </div>

@@ -6,6 +6,12 @@
 <input name="surname" type="text" value="${ciudadano.apellidos}"/><br/>
 <label>DNI</label>
 <input name="dni" type="text" value="${ciudadano.dni}"/><br/>
+<label>Teléfono</label>
+<input name="telefono" type="text" value="${ciudadano.telefono}"/><br/>
+<label>Nivel inst.</label>
+<input name="nivelInstruccion" type="text" value="${ciudadano.nivelInstruccion}"/><br/>
+<label>Designacion</label>
+<input name="designacion" type="text" value="${ciudadano.designacion}"/><br/>
 <label>Sexo</label>
 <input type="radio" name="sexo" value="F" />F
 <input type="radio" name="sexo" value="M" />M <br/>
