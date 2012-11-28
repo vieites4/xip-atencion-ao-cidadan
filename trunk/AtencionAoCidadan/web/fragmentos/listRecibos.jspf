@@ -1,0 +1,30 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:choose>
+    <c:when test="${listRecibos == null || listRecibos.isEmpty()}">
+        <p>No hay recibos o autoliquidaciones </p>
+    </c:when>
+    <c:otherwise>
+        <table>
+            <tr>
+                <th>Categoria</th>
+                <th>Referencia</th>
+                <th>Ano liq.</th>
+                <th>Importe</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+            <c:forEach var="r" items="${listRecibos}">
+                <tr>    
+                    <td>${r.categoria.abreviatura}</td>
+                    <td>${r.referencia}</td>
+                    <td>${r.ano}</td>
+                    <td>${r.importe}</td>
+                    <td>${r.estado}</td>
+                    <td><a href="FrontController?action=view_recibo&id=${r.id}">Ver</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:otherwise>
+</c:choose>

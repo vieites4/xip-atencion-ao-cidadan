@@ -1,0 +1,48 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
+
+<div class="recibo-form">
+
+<label for="numrecibo">Num. recibo</label>
+<input name="numrecibo" type="text" disabled value="${recibo.numeroRecibo}"/><br/>
+
+<label for="categoria">Categoria</label>
+<input name="categoria" type="text" disabled value="${recibo.categoria.nombre}"/><br/>
+
+<label for="tipo">Tipo</label>
+<input name="tipo" type="text" disabled value="${recibo.tipo}"/><br/>
+
+<label for="referencia">Referencia</label>
+<input name="referencia" type="text" disabled value="${recibo.referencia}"/><br/>
+
+<label for="importe">Importe</label>
+<input name="importe" type="text" disabled value="${recibo.importe} €"/><br/>
+
+<label for="estado">Estado</label>
+<input name="estado" type="text" disabled value="${recibo.estado}"/><br/>
+
+<label>Situación de pagamento</label>
+<c:choose>
+    <c:when test="${recibo.esAutoliquidacion}">
+        <input type="radio" disabled name="autoliquidacion" checked value="true" />Voluntaria
+        <input type="radio" disabled name="autoliquidacion" value="false" />Requerida
+    </c:when>
+    <c:otherwise>
+        <input type="radio" disabled name="autoliquidacion" value="true" />Voluntaria
+        <input type="radio" disabled name="autoliquidacion" checked value="false" />Requerida
+    </c:otherwise>
+</c:choose>
+        
+<h3>Datas</h3>
+<label for="dataaprobacion">Data de aprobación</label>
+<input name="dataaprobacion" type="text" disabled value="${recibo.dataAprobacionFormateada}"/><br/>
+<label for="datacobro">Data de cobro</label>
+<input name="datacobro" type="text" disabled value="${recibo.dataCobroFormateada}"/><br/>
+<label for="datalimite">Data límite de pagamento</label>
+<input name="datalimite" type="text" disabled value="${recibo.dataLimiteFormateada}"/><br/>
+
+
+
+
+</div>
