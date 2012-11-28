@@ -15,5 +15,7 @@
     <mapping class="model.Ciudadano"/>
     <mapping class="model.Tarea"/>
     <mapping class="model.Usuario"/>
+    <mapping class="model.Recibo"/>
+    <mapping class="model.RecibosCategoria"/>
   </session-factory>
 </hibernate-configuration>
