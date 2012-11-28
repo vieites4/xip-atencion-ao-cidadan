@@ -4,11 +4,11 @@ package model;
  *
  * @author nessa
  */
-public enum TiposUsuarios {
-    Administrador(0), Administrativo(1), Ciudadano(2) ;
+public enum RecibosEstados {
+    Pendente(0), Pagado(1), Anulado(2) ;
 
     private final int value;
-    private TiposUsuarios(int value) {
+    private RecibosEstados(int value) {
         this.value = value;
     }
 
