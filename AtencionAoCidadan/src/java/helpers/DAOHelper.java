@@ -5,6 +5,9 @@ import dao.DAOTareas;
 import model.Tarea;
 import dao.DAOUsuarios;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -116,24 +119,26 @@ public class DAOHelper {
             return "index.jsp";
         }
     }
-//        public String onSearchTarea(HttpServletRequest request, HttpServletResponse response) {
-//            try {
-//                Long id = request.getParameter("id");
-//
-//                Date fecha=request.getParameter("fecha");
-//                String tipo = request.getParameter("tipo");
-//                String descripcion = request.getParameter("descripcion");
-//                String estado = request.getParameter("estado");
-//
-//
-//                List<Tarea> list = DAOTareas.getInstance().getByFilters(id,tipo, descripcion, estado, fecha);
-//                request.setAttribute("list", list);
-//                return "listTarefas.jsp";
-//            } catch (Exception e) {
-//                // log error
-//                // redirect to error page or show error message
-//                return "index.jsp";
-//            }
-//        }
-    
+    public String onSearchTarea(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String id1 = request.getParameter("id");
+            Long id = Long.parseLong(id1);
+            String fecha2=request.getParameter("fecha");
+            SimpleDateFormat f=new SimpleDateFormat("dd/MM/yy");
+            Date fecha= f.parse(fecha2);
+            String tipo = request.getParameter("tipo");
+            String descripcion = request.getParameter("descripcion");
+            String estado = request.getParameter("estado");
+
+            
+            List<Tarea> list = DAOTareas.getInstance().getByFilt(id,tipo, descripcion, estado, fecha);
+            request.setAttribute("list", list);
+            return "listTarefas.jsp";
+        } catch (Exception e) {
+            // log error
+            // redirect to error page or show error message
+            return "index.jsp";
+        }
+    }
+
 }

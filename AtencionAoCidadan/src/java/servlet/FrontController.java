@@ -28,6 +28,7 @@ public class FrontController extends HttpServlet {
     private static String UPDATE_CIUDADANO = "UPDATE_CIUDADANO";
     private static String SEARCH_CIUDADANO = "SEARCH_CIUDADANO";
     private static String Listo_CIUDADANO = "Listo_CIUDADANO";
+    private static String Listo_tarefa="Listo_tarefa";
     private static String VIEW_CIUDADANO = "VIEW_CIUDADANO";
     private static DAOHelper daoHelper = new DAOHelper();
 
@@ -58,17 +59,14 @@ public class FrontController extends HttpServlet {
             dir = daoHelper.onSearchCiudadano(request, response);
         } else if (Listo_CIUDADANO.equalsIgnoreCase(action)){
             dir = daoHelper.onTodosCiudadano(request, response);
+        } else if (Listo_tarefa.equalsIgnoreCase(action)){
+            dir = daoHelper.onSearchTarea(request, response);
         } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
             //TODO : paso id
             dir = "ciudadano.jsp";
            
         //Redirección a vistas
-                } else if ("ver_tarea".equalsIgnoreCase(action)){
-            //TODO : paso id
-            dir = "tarea.jsp";
-           
-        //Redirección a vistas
-        }  
+              }  
         else if ("view_alta".equalsIgnoreCase(action)) {    
             dir = "addCiudadano.jsp";
         } else if ("view_cert_padron".equalsIgnoreCase(action)) {    
@@ -78,6 +76,8 @@ public class FrontController extends HttpServlet {
         } else if ("view_buscar".equalsIgnoreCase(action)) { 
             dir = "findCiudadano.jsp";
         } else if ("view_tarefas".equalsIgnoreCase(action)) {    
+            dir = "listTarefas.jsp";
+        } else if ("view_listatarefa".equalsIgnoreCase(action)) {    
             dir = "listTarefas.jsp";
         } else if ("view_listado".equalsIgnoreCase(action)) {    
             dir = "listadoCiudadanos.jsp";

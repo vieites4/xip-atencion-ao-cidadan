@@ -16,14 +16,14 @@
                 <th>Fecha</th>
                 <th></th>
             </tr>
-            <c:forEach var="c" items="${list}">
+            <c:forEach var="t" items="${list}">
                 <tr>    
-                    <td>${c.id}</td>
-                    <td>${c.tipo}</td>
-                    <td>${c.descripcion}</td>
-                    <td>${c.estado}</td>
-                    <td>${c.fecha}</td>
-                    <td><a href="FrontController?action=ver_tarea&id=${c.id}">Ver</a></td>
+                    <td>${t.id}</td>
+                    <td>${t.tipo}</td>
+                    <td>${t.descripcion}</td>
+                    <td>${t.estado}</td>
+                    <td>${t.fecha}</td>
+                    <td><a href="FrontController?action=view_tarefas&id=${c.id}">Ver</a></td>
                 </tr>
             </c:forEach>
         </table>
