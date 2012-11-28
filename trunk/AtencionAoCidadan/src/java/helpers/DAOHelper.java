@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Ciudadano;
+import model.Recibo;
 
 /**
  *
@@ -23,6 +24,22 @@ public class DAOHelper {
 
     static final Logger log = Logger.getLogger(DAOHelper.class.getSimpleName());
 
+    
+    public String onViewCiudadano(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Ciudadano c = DAOCiudadanos.getInstance().getById(id);
+        if(c == null){
+            request.setAttribute("error_cause", "El ciudadano ya no existe en los registros");  
+            return "index.jsp";
+        }else{
+            //c.setRecibos(DAORecibos.getInstance().getByFilters(id));
+            request.setAttribute("ciudadano", c);
+            //List<Recibo> listRecibos = DAORecibos.getInstance().getByFilters(id);
+            //request.setAttribute("listRecibos", listRecibos);
+            return "ciudadano.jsp";
+        }
+    }
+    
     public String onAddCiudadano(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
 
@@ -98,6 +115,7 @@ public class DAOHelper {
             String dni = request.getParameter("dni");
             String sexo = request.getParameter("sexo");
             
+
 
             if (dni != null && !dni.isEmpty()) {
                 Ciudadano c = DAOCiudadanos.getInstance().getByDni(dni);
