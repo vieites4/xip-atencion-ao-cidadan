@@ -63,7 +63,13 @@ public class FrontController extends HttpServlet {
             dir = "ciudadano.jsp";
            
         //Redirección a vistas
-        } else if ("view_alta".equalsIgnoreCase(action)) {    
+                } else if ("ver_tarea".equalsIgnoreCase(action)){
+            //TODO : paso id
+            dir = "tarea.jsp";
+           
+        //Redirección a vistas
+        }  
+        else if ("view_alta".equalsIgnoreCase(action)) {    
             dir = "addCiudadano.jsp";
         } else if ("view_cert_padron".equalsIgnoreCase(action)) {    
             dir = "getCertificado.jsp";
