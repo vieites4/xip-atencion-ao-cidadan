@@ -13,7 +13,7 @@ html { padding:0; margin:0; font:normal 12px Arial, Helvetica, sans-serif; color
 .main_resize { margin:0 auto; padding:0 10px; width:958px; border-right:1px solid #ececec; border-left:1px solid #ececec; border-bottom:1px solid #ececec; background:#fff;}
 .main_resize h2 { font:normal 18px Arial, Helvetica, sans-serif; color:#2a2a2a; padding:10px 5px; margin:0;}
 .main_resize h2 span { font:  italic 11px Arial, Helvetica, sans-serif; color:#b1b1b1;}
-.main_resize h3 { font:normal 44px Arial, Helvetica, sans-serif; color:#7e7e7e; padding:20px 5px; margin:0; text-align:right;}
+.main_resize h3 { font-family: Arial, Helvetica, sans-serif; color:#7e7e7e; padding:20px 5px; margin:0; }
 .main_resize p {  line-height:1.8em; padding:5px; margin:0;}
 .main_resize p span { color:#b1b1b1; font: italic 11px Arial, Helvetica, sans-serif; line-height:1.8em;}
 .main_resize a { color:#2d75c0; text-decoration:none;}
@@ -63,4 +63,22 @@ html { padding:0; margin:0; font:normal 12px Arial, Helvetica, sans-serif; color
 p.clr, .clr { clear:both; padding:0; margin:0; background:none;}
 li.bg, .bg {  clear:both; border-top:1px solid #f2f2f2; width:100%; padding:0; margin:15px 0; background:none; line-height:0;}
 
-label { display: inline-block; margin: 5px 0 2px 0; padding: 1px; width: 60px; }
+label { display: inline-block; margin: 5px 0 2px 0; padding: 1px; width: 75px; }
+
+
+/*************formulario*********/
+.deshabilitado { border:0; background: transparent; } 
+
+
+table { border: 1px solid grey; margin-top: 10px; padding: 10px; }
+th, td { padding: 2px 8px;  margin: 0;  }
+th { border-bottom: 2px solid lightblue; }
+td { border-bottom: 1px dotted lightblue; }
+
+
+.recibo-form label { width: 160px;} 
+.recibo-form input[type='text'] { width: 200px; border: 0; background-color: transparent; }
+
+
+.breadcrumbs, .enlace { display: block; clear: left; margin: 10px 3px;}
+.breadcrumbs { font-size: 0.9em; }
