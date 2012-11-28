@@ -1,11 +1,13 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -33,8 +35,12 @@ public class Ciudadano implements Serializable {
     private String nivelInstruccion;
     private String telefono; //Opcional
     private String designacion;//Opcional
+    
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Usuario usuario;
+    
+    @OneToMany(mappedBy = "ciudadano")
+    private List<Recibo> recibos; 
 
     /* Constructores */
     public Ciudadano() {
@@ -165,4 +171,16 @@ public class Ciudadano implements Serializable {
     public boolean validate() {
         return (nombre != null && apellidos != null && dni != null);
     }
+
+    public List<Recibo> getRecibos() {
+        return recibos;
+    }
+
+    public void setRecibos(List<Recibo> recibos) {
+        this.recibos = recibos;
+    }
+
+    
+    
+    
 }
