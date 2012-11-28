@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.GregorianCalendar;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -10,6 +11,7 @@ import javax.persistence.ManyToOne;
  *
  * @author nessa
  */
+@Entity
 public class Recibo implements Serializable {
     /* Atributos */
     @Id
@@ -20,18 +22,15 @@ public class Recibo implements Serializable {
     private String descripcion;
     private Float importe;
     private boolean esAutoliquidacion = false;
-    private String periodicidad = null;
     private int ano; //Ano liquidcion
     private String tipo;
     private GregorianCalendar dataAprobacion;
     private GregorianCalendar dataCobro;
     private GregorianCalendar dataLimitePagamento;
+    private RecibosEstados estado;
     
     @ManyToOne 
     private RecibosCategoria categoria;
-    
-    @ManyToOne
-    private RecibosEstados estado;
     
     @ManyToOne
     private Ciudadano ciudadano;
@@ -82,14 +81,6 @@ public class Recibo implements Serializable {
         this.esAutoliquidacion = esAutoliquidacion;
     }
 
-    public String getPeriodicidad() {
-        return periodicidad;
-    }
-
-    public void setPeriodicidad(String periodicidad) {
-        this.periodicidad = periodicidad;
-    }
-
     public int getAno() {
         return ano;
     }
@@ -116,8 +107,8 @@ public class Recibo implements Serializable {
         this.categoria = categoria;
     }
 
-    public int getEstado() {
-        return estado.getValue();
+    public String getEstado() {
+        return estado.getNombre();
     }
 
     public void setEstado(RecibosEstados estado) {
