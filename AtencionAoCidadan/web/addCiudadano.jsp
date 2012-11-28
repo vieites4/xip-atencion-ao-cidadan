@@ -19,7 +19,7 @@
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
                 <div class="main_center">
-                    <h2>Alta no padrón municipal</h2>
+                    <h2>Alta en el padrón municipal</h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
                         <input type="hidden" name="action" value="add_ciudadano"/>
