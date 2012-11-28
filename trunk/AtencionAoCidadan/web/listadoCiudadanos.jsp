@@ -14,8 +14,13 @@
                 <div class="main_center">
                     <h2>Listado de ciudadanos</h2>
                     <%@include file="fragmentos/messages.jspf" %>
-                    <%@include file="fragmentos/listCiudadanos.jspf" %>
-
+       <form action="FrontController" method="post">
+                        <input type="hidden" name="action" value="listo_ciudadano"/>
+                        <input type="submit" value="Buscar"/>
+                    </form>
+                    <c:if test="${list != null}">
+                        <%@include file="fragmentos/listCiudadanos_1.jspf" %>
+                    </c:if>
                 </div>
                 <div class="clr"></div>
             </div>

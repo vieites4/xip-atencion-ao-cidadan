@@ -1,0 +1,29 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:choose>
+    <c:when test="${list == null || list.isEmpty()}">
+        <p>No hay resultados</p>
+    </c:when>
+    <c:otherwise>
+        <table>
+            <tr>
+                <th>Nivel Inst.</th>
+                <th>Designación</th>
+                <th></th>
+            </tr>
+            <c:forEach var="c" items="${list}">
+                <tr>    
+                    <td>${c.nombre}</td>
+                    <td>${c.apellidos}</td>
+                    <td>${c.dni}</td>
+                    <td>${c.direccion}</td>
+                    <td>${c.telefono}</td>
+                    <td>${c.nivelInstruccion}</td>
+                    <td>${c.designacion}</td>
+                    <td><a href="FrontController?action=ver_ciudadano&id=${c.id}">Ver</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:otherwise>
+</c:choose>
