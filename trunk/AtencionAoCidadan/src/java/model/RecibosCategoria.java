@@ -6,8 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /*
-insert into `RecibosTipos`(`nombre`, `abreviatura`)
-values ('IBI', 'Imposto de Bens Inmobles'), ('IVTM','Imposto de Vehículos de Tracción Mecánica');
+insert into reciboscategoria(id, abreviatura, nombre)
+values (1,'IBI', 'Imposto de Bens Inmobles'), (2,'IVTM','Imposto de Vehículos de Tracción Mecánica');
 */
 
 /**

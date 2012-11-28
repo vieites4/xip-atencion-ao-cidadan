@@ -1,11 +1,23 @@
 package model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+/*
+INSERT INTO recibo(
+            id, ano, dataaprobacion, datacobro, datalimitepagamento, descripcion, 
+            esautoliquidacion, estado, importe, numerorecibo, referencia, 
+            tipo, categoria_id, ciudadano_id)
+    VALUES (1, 2010, '2010-10-01 10:10', '2010-10-01 10:10', '2010-10-01 10:10', '', 
+            false, 1, 10.0, 1, '234s234', 
+            'rb', 1, 24);
+*/
 
 /**
  *
@@ -13,6 +25,9 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Recibo implements Serializable {
+    @Transient
+    private static SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    
     /* Atributos */
     @Id
     @GeneratedValue
@@ -95,7 +110,7 @@ public class Recibo implements Serializable {
 
     public void setTipo(String tipo) {
         if("RB".equalsIgnoreCase(tipo) || "AU".equalsIgnoreCase(tipo)){
-            this.tipo = tipo;
+            this.tipo = tipo.toUpperCase();
         }
     }
 
@@ -134,6 +149,11 @@ public class Recibo implements Serializable {
     public GregorianCalendar getDataAprobacion() {
         return dataAprobacion;
     }
+    
+    public String getDataAprobacionFormateada(){
+        return format.format(dataAprobacion.getTime());
+    }
+
 
     public void setDataAprobacion(GregorianCalendar dataAprobacion) {
         this.dataAprobacion = dataAprobacion;
@@ -142,13 +162,22 @@ public class Recibo implements Serializable {
     public GregorianCalendar getDataCobro() {
         return dataCobro;
     }
+    
 
     public void setDataCobro(GregorianCalendar dataCobro) {
         this.dataCobro = dataCobro;
     }
+    
+    public String getDataCobroFormateada(){
+        return format.format(dataCobro.getTime());
+    }
 
     public GregorianCalendar getDataLimitePagamento() {
         return dataLimitePagamento;
+    }
+    
+    public String getDataLimiteFormateada(){
+        return format.format(dataLimitePagamento.getTime());
     }
 
     public void setDataLimitePagamento(GregorianCalendar dataLimitePagamento) {
