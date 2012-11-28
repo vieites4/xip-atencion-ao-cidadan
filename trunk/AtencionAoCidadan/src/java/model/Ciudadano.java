@@ -8,18 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
 /**
  * Esta clase representa un ciudadano empadronado con todos sus datos del padrón
  * http://es.wikipedia.org/wiki/Padr%C3%B3n_municipal_de_habitantes
  * @author joseangel.pineiro
  */
-
 @Entity
 public class Ciudadano implements Serializable {
-    
+
     /* Atributos */
-    
     /**
      * Id de cada ciudadano
      */
@@ -31,17 +28,18 @@ public class Ciudadano implements Serializable {
     @Column(unique = true)
     private String dni; //o pasaporte
     private String sexo; /* F o M */
+
     private String direccion;
     private String nivelInstruccion;
     private String telefono; //Opcional
     private String designacion;//Opcional
-    
-    @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Usuario usuario;
-    
+
     /* Constructores */
-    public Ciudadano(){}
-    
+    public Ciudadano() {
+    }
+
     /* Getters & setters */
     public Long getId() {
         return id;
@@ -154,14 +152,17 @@ public class Ciudadano implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    public String getNombreCompleto(){
+
+    public String getNombreCompleto() {
         return nombre + " " + apellidos;
     }
-    
+
     public void onCreate() {
         this.usuario = new Usuario();
         this.usuario.setTipo(TiposUsuarios.Ciudadano);
     }
-    
+
+    public boolean validate() {
+        return (nombre != null && apellidos != null && dni != null);
+    }
 }
