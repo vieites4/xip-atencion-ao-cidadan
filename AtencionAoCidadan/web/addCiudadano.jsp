@@ -18,7 +18,7 @@
         <div class="main">
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
-                <div class="main_center">
+                <div class="main_center" id="addCiudadano">
                     <h2>Alta en el padrón municipal</h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
