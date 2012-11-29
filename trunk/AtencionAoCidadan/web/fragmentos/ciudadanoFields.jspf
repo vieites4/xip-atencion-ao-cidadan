@@ -1,19 +1,32 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <label>Nombre</label>
-<input name="name" type="text" value="${ciudadano.nombre}"/><br/>
+<input name="name" type="text" value="${ciudadano.nombre}"/>
 <label>Apellidos</label>
-<input name="surname" type="text" value="${ciudadano.apellidos}"/><br/>
+<input name="surname" type="text" value="${ciudadano.apellidos}"/>
 <label>DNI</label>
-<input name="dni" type="text" value="${ciudadano.dni}"/><br/>
+<input name="dni" type="text" value="${ciudadano.dni}"/>
 <label>Teléfono</label>
-<input name="telefono" type="text" value="${ciudadano.telefono}"/><br/>
+<input name="telefono" type="text" value="${ciudadano.telefono}"/>
 <label>Nivel inst.</label>
-<input name="nivelInstruccion" type="text" value="${ciudadano.nivelInstruccion}"/><br/>
+<input name="nivelInstruccion" type="text" value="${ciudadano.nivelInstruccion}"/>
 <label>Designacion</label>
-<input name="designacion" type="text" value="${ciudadano.designacion}"/><br/>
+<input name="designacion" type="text" value="${ciudadano.designacion}"/>
 <label>Sexo</label>
-<input type="radio" name="sexo" value="F" />F
-<input type="radio" name="sexo" value="M" />M <br/>
-<!-- TODO: añadir campos que faltan -->
-
+<span>
+    <c:choose>
+        <c:when test="${ciudadano.sexo == 'M'}">
+            <input type="radio" name="sexo" value="F" />F
+            <input type="radio" name="sexo" checked value="M" />M 
+        </c:when>
+        <c:when test="${ciudadano.sexo == 'F'}">
+            <input type="radio" name="sexo" checked value="F" />F
+            <input type="radio" name="sexo" value="M" />M 
+        </c:when>
+        <c:otherwise>
+            <input type="radio" name="sexo" value="F" />F
+            <input type="radio" name="sexo" value="M" />M 
+        </c:otherwise>
+    </c:choose>
+</span>
