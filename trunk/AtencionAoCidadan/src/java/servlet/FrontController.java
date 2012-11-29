@@ -1,9 +1,7 @@
 package servlet;
 
-import dao.DAORecibos;
 import helpers.DAOHelper;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Recibo;
 import model.Usuario;
 
 /**
@@ -30,9 +27,9 @@ public class FrontController extends HttpServlet {
     private static String ADD_CIUDADANO = "ADD_CIUDADANO";
     private static String UPDATE_CIUDADANO = "UPDATE_CIUDADANO";
     private static String SEARCH_CIUDADANO = "SEARCH_CIUDADANO";
-    private static String Listo_CIUDADANO = "Listo_CIUDADANO";
-    private static String Listo_tarefa="Listo_tarefa";
+    private static String VIEW_LISTADO = "VIEW_LISTADO";
     private static String VIEW_CIUDADANO = "VIEW_CIUDADANO";
+    private static String Listo_tarefa="Listo_tarefa";
     private static DAOHelper daoHelper = new DAOHelper();
 
     /** 
@@ -54,22 +51,31 @@ public class FrontController extends HttpServlet {
         HttpSession session = request.getSession(true);
         session.setAttribute("usuario", new Usuario());
         
+        //Ciudadano
         if (ADD_CIUDADANO.equalsIgnoreCase(action)) {
             dir = daoHelper.onAddCiudadano(request, response);
         } else if (UPDATE_CIUDADANO.equalsIgnoreCase(action)) {
             dir = daoHelper.onUpdateCiudadano(request, response);
         } else if (SEARCH_CIUDADANO.equalsIgnoreCase(action)){
             dir = daoHelper.onSearchCiudadano(request, response);
-        } else if (Listo_CIUDADANO.equalsIgnoreCase(action)){
-            dir = daoHelper.onTodosCiudadano(request, response);
-        } else if (Listo_tarefa.equalsIgnoreCase(action)){
-            dir = daoHelper.onSearchTarea(request, response);
         } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
             dir = daoHelper.onViewCiudadano(request, response);
+        } else if (VIEW_LISTADO.equalsIgnoreCase(action)) {    
+            dir = daoHelper.onTodosCiudadano(request, response);
            
+        //Tareas
+        } else if ("view_tarefas".equalsIgnoreCase(action)) {   
+            dir = daoHelper.onSearchTarea(request, response);
+            
+        //Recibos
+        } else if ("view_recibos".equalsIgnoreCase(action)) {
+            dir = daoHelper.onListRecibos(request, response);
+        } else if ("view_recibo".equalsIgnoreCase(action)) {
+            dir = daoHelper.onViewRecibo(request, response);
+           
+            
         //Redirección a vistas
-              }  
-        else if ("view_alta".equalsIgnoreCase(action)) {    
+        } else if ("view_alta".equalsIgnoreCase(action)) {    
             dir = "addCiudadano.jsp";
         } else if ("view_cert_padron".equalsIgnoreCase(action)) {    
             dir = "getCertificado.jsp";
@@ -77,20 +83,8 @@ public class FrontController extends HttpServlet {
             dir = "cambioDireccion.jsp";
         } else if ("view_buscar".equalsIgnoreCase(action)) { 
             dir = "findCiudadano.jsp";
-        } else if ("view_tarefas".equalsIgnoreCase(action)) {    
-            dir = "listTarefas.jsp";
-        } else if ("view_listatarefa".equalsIgnoreCase(action)) {    
-            dir = "listTarefas.jsp";
-        } else if ("view_listado".equalsIgnoreCase(action)) {    
-            dir = "listadoCiudadanos.jsp";
-            
-        //Recibos
-        } else if ("view_recibos".equalsIgnoreCase(action)) {
-            dir = daoHelper.onListRecibos(request, response);
-            
-        } else if ("view_recibo".equalsIgnoreCase(action)) {
-            dir = daoHelper.onViewRecibo(request, response);
-            
+         
+        //Sin accion
         } else {
             log.log(Level.INFO, "No action performed!");
             //@TODO Handle else
