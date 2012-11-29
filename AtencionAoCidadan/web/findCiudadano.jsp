@@ -10,14 +10,16 @@
         <div class="main">
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
-                <div class="main_center">
+                <div class="main_center" id="findCiudadano">
                     <h2>Buscar ciudadano</h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
                         <input type="hidden" name="action" value="search_ciudadano"/>
                         <%@include file="fragmentos/ciudadanoFields.jspf" %>
-                        <input type="reset" value="Borrar" />
-                        <input type="submit" value="Buscar"/>
+                        <p class="botones">
+                            <input type="reset" value="Borrar" />
+                            <input type="submit" value="Buscar"/>
+                        </p>
                     </form>
                     <c:if test="${list != null}">
                         <%@include file="fragmentos/listCiudadanos.jspf" %>
