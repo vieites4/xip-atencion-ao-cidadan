@@ -20,12 +20,16 @@ import model.Tarea;
  *
  * @author joseangel.pineiro
  */
-public class DAOHelper {
+public class DAOHelperAdministrativo {
 
-    static final Logger log = Logger.getLogger(DAOHelper.class.getSimpleName());
+    static final Logger log = Logger.getLogger(DAOHelperAdministrativo.class.getSimpleName());
 
-    
     public String onViewCiudadano(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setAttribute("ver", true);
+        return onEditCiudadano(request, response);
+    }
+            
+    public String onEditCiudadano(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         Ciudadano c = DAOCiudadanos.getInstance().getById(id);
         if(c == null){

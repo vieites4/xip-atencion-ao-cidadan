@@ -1,6 +1,7 @@
 package servlet;
 
-import helpers.DAOHelper;
+import helpers.DAOHelperAdministrativo;
+import helpers.DAOHelperCiudadano;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.TiposUsuarios;
 import model.Usuario;
 
 /**
@@ -29,8 +31,9 @@ public class FrontController extends HttpServlet {
     private static String SEARCH_CIUDADANO = "SEARCH_CIUDADANO";
     private static String VIEW_LISTADO = "VIEW_LISTADO";
     private static String VIEW_CIUDADANO = "VIEW_CIUDADANO";
-    private static String Listo_tarefa="Listo_tarefa";
-    private static DAOHelper daoHelper = new DAOHelper();
+    private static String EDIT_CIUDADANO = "EDIT_CIUDADANO";
+    private static DAOHelperAdministrativo helperAdministrativo = new DAOHelperAdministrativo();
+    private static DAOHelperCiudadano helperCiudadano = new DAOHelperCiudadano();
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -49,43 +52,91 @@ public class FrontController extends HttpServlet {
         
         //TODO: borrar esto cuando haya inicio de sesion
         HttpSession session = request.getSession(true);
-        session.setAttribute("usuario", new Usuario());
+        Usuario u = (Usuario) session.getAttribute("usuario");
+        if(u == null){
+            u = new Usuario();
+            u.setTipo(TiposUsuarios.Ciudadano);
+            u.setCiudadano(dao.DAOCiudadanos.getInstance().getById(new Long(24)));
+            u.setTipo(TiposUsuarios.Administrativo);
+            session.setAttribute("usuario", u);
+        }
         
-        //Ciudadano
-        if (ADD_CIUDADANO.equalsIgnoreCase(action)) {
-            dir = daoHelper.onAddCiudadano(request, response);
-        } else if (UPDATE_CIUDADANO.equalsIgnoreCase(action)) {
-            dir = daoHelper.onUpdateCiudadano(request, response);
-        } else if (SEARCH_CIUDADANO.equalsIgnoreCase(action)){
-            dir = daoHelper.onSearchCiudadano(request, response);
-        } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
-            dir = daoHelper.onViewCiudadano(request, response);
-        } else if (VIEW_LISTADO.equalsIgnoreCase(action)) {    
-            dir = daoHelper.onTodosCiudadano(request, response);
-           
-        //Tareas
-        } else if ("view_tarefas".equalsIgnoreCase(action)) {   
-            dir = daoHelper.onSearchTarea(request, response);
+        /*----------------------------------*
+         * ADMINISTRATIVO
+         *----------------------------------*/
+        if(u != null && u.isAdministrativo()){
+            //Ciudadano
+            if (ADD_CIUDADANO.equalsIgnoreCase(action)) {
+                dir = helperAdministrativo.onAddCiudadano(request, response);
+            } else if (UPDATE_CIUDADANO.equalsIgnoreCase(action)) {
+                dir = helperAdministrativo.onUpdateCiudadano(request, response);
+            } else if (SEARCH_CIUDADANO.equalsIgnoreCase(action)){
+                dir = helperAdministrativo.onSearchCiudadano(request, response);
+            } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
+                dir = helperAdministrativo.onViewCiudadano(request, response);
+            } else if (VIEW_LISTADO.equalsIgnoreCase(action)) {    
+                dir = helperAdministrativo.onTodosCiudadano(request, response);
+            } else if (EDIT_CIUDADANO.equalsIgnoreCase(action)){
+                dir = helperAdministrativo.onEditCiudadano(request, response);
+
+            //Tareas
+            } else if ("view_tarefas".equalsIgnoreCase(action)) {   
+                dir = helperAdministrativo.onSearchTarea(request, response);
+
+            //Recibos
+            } else if ("view_recibos".equalsIgnoreCase(action)) {
+                dir = helperAdministrativo.onListRecibos(request, response);
+            } else if ("view_recibo".equalsIgnoreCase(action)) {
+                dir = helperAdministrativo.onViewRecibo(request, response);
+
+
+            //Redirección a vistas
+            } else if ("view_alta".equalsIgnoreCase(action)) {    
+                dir = "addCiudadano.jsp";
+            } else if ("view_cert_padron".equalsIgnoreCase(action)) {    
+                dir = "getCertificado.jsp";
+            } else if ("view_direccion".equalsIgnoreCase(action)) {    
+                dir = "cambioDireccion.jsp";
+            } else if ("view_buscar".equalsIgnoreCase(action)) { 
+                dir = "findCiudadano.jsp";
+            } else {//Sin accion
+                log.log(Level.INFO, "No action performed!");
+                //@TODO Handle else
+            }
+        
+        /*----------------------------------*
+         * ADMINISTRADOR
+         *----------------------------------*/
+        } else if (u != null && u.isAdministrador()){
+            if ("search_usuario".equalsIgnoreCase(action)) { 
+                dir = "searchUsuario.jsp";
+            } else {//Sin accion
+                log.log(Level.INFO, "No action performed!");
+                //@TODO Handle else
+            }
+        
             
-        //Recibos
-        } else if ("view_recibos".equalsIgnoreCase(action)) {
-            dir = daoHelper.onListRecibos(request, response);
-        } else if ("view_recibo".equalsIgnoreCase(action)) {
-            dir = daoHelper.onViewRecibo(request, response);
-           
-            
-        //Redirección a vistas
-        } else if ("view_alta".equalsIgnoreCase(action)) {    
-            dir = "addCiudadano.jsp";
-        } else if ("view_cert_padron".equalsIgnoreCase(action)) {    
-            dir = "getCertificado.jsp";
-        } else if ("view_direccion".equalsIgnoreCase(action)) {    
-            dir = "cambioDireccion.jsp";
-        } else if ("view_buscar".equalsIgnoreCase(action)) { 
-            dir = "findCiudadano.jsp";
-         
-        //Sin accion
-        } else {
+        /*----------------------------------*
+         * CIUDADANO
+         *----------------------------------*/
+        } else if (u != null && u.isCiudadano()){
+            if ("view_cert_padron".equalsIgnoreCase(action)) {    
+                dir = "getCertificado.jsp";
+            } else if ("view_direccion".equalsIgnoreCase(action)) {    
+                dir = "cambioDireccion.jsp";
+            } else if ("view_recibos".equalsIgnoreCase(action)) {    
+                dir = helperCiudadano.onListRecibos(request, response, u);
+            } else if ("view_recibo".equalsIgnoreCase(action)) {    
+                dir = helperCiudadano.onViewRecibo(request, response);
+            } else if ("view_domiciliacion".equalsIgnoreCase(action)) {    
+                dir = helperCiudadano.onViewDomiciliacion(request, response, u);
+            } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
+                dir = helperCiudadano.onViewCiudadano(request, response, u);
+            } else {//Sin accion
+                log.log(Level.INFO, "No action performed!");
+                //@TODO Handle else
+            }
+        }else {//Sin accion
             log.log(Level.INFO, "No action performed!");
             //@TODO Handle else
         }

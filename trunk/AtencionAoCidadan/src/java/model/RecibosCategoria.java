@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,6 +23,8 @@ public class RecibosCategoria implements Serializable {
     private Long id;
     private String nombre;
     private String abreviatura;
+    @Column(nullable = false)
+    private boolean periodico = false; 
     
     /* Constructores */
     public RecibosCategoria(){
@@ -51,6 +54,14 @@ public class RecibosCategoria implements Serializable {
 
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
+    }
+
+    public boolean isPeriodico() {
+        return periodico;
+    }
+
+    public void setPeriodico(boolean periodico) {
+        this.periodico = periodico;
     }
     
     

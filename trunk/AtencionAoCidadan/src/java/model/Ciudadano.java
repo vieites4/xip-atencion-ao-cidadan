@@ -32,6 +32,7 @@ public class Ciudadano implements Serializable {
     private String sexo; /* F o M */
 
     private String direccion;
+    private String cp;
     private String nivelInstruccion;
     private String telefono; //Opcional
     private String designacion;//Opcional

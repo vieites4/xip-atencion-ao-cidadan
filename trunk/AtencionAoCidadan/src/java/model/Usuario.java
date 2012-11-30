@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,8 +20,11 @@ public class Usuario implements Serializable{
     private String usuario;
     private String email; //javax.mail.internet.InternetAddress
     private String movil;
-    @Column(columnDefinition="bigint")
+    @Column(columnDefinition="tinyint")
     private TiposUsuarios tipo; 
+    
+    @OneToOne(mappedBy = "usuario")
+    private Ciudadano ciudadano;
     
     /* Constructores */
     public Usuario(){}
@@ -74,11 +78,26 @@ public class Usuario implements Serializable{
     
     //TODO: añadir los campos que deba tener el usuario
     
-    //TODO
     public Boolean isAdministrativo(){
-        //return (tipo == TiposUsuarios.Administrativo);
-        return true;
+        return (tipo == TiposUsuarios.Administrativo);
     }
+    
+    public Boolean isAdministrador(){
+        return (tipo == TiposUsuarios.Administrador);
+    }
+    
+    public Boolean isCiudadano(){
+        return (tipo == TiposUsuarios.Ciudadano);
+    }
+
+    public Ciudadano getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+    
     
     
 }

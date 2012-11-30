@@ -13,7 +13,7 @@
                 <div class="main_center" id="findCiudadano">
                     <h2>Buscar ciudadano</h2>
                     <%@include file="fragmentos/messages.jspf" %>
-                    <form action="FrontController" method="post">
+                    <form action="FrontController" method="get">
                         <input type="hidden" name="action" value="search_ciudadano"/>
                         <%@include file="fragmentos/ciudadanoFields.jspf" %>
                         <p class="botones">

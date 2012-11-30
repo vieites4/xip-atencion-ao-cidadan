@@ -5,6 +5,7 @@ import model.Ciudadano;
 import model.RecibosCategoria;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -55,16 +56,16 @@ public class DAORecibosCategorias {
      * @param nombre
      * @return 
      */
-    public List<RecibosCategoria> getByFilters(){
+    public List<RecibosCategoria> getByFilters(Boolean periodico){
         List<RecibosCategoria> list = null;
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         // consulta filtrando por ...
         Criteria c = session.createCriteria(Ciudadano.class);
-        /*if(nombre != null && !nombre.isEmpty()){
-            c.add(Restrictions.like("nombre", "%" + nombre + "%"));
-        }*/
+        if(periodico != null ){
+            c.add(Restrictions.eq("periodico", periodico));
+        }
        
         /* TODO: filtros */
         list = (List<RecibosCategoria>)c.list();

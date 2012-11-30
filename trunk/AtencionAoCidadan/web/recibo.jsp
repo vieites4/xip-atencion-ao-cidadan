@@ -20,9 +20,17 @@
                 <%@include file="fragmentos/cabecera.jspf" %>
                 <div class="main_center">
                     <p class="breadcrumbs">
-                        <a href="FrontController?action=view_ciudadano&id=${ciudadano}">Ciudadano</a> > 
-                        <a href="FrontController?action=view_recibos&ciudadano=${recibo.ciudadano.id}">Recibos</a>
-                        > Recibo 
+                        <c:choose>
+                            <c:when test="${usuario.isAdministrativo()}">
+                                <a href="FrontController?action=view_ciudadano&id=${ciudadano}">Ciudadano</a> > 
+                                <a href="FrontController?action=view_recibos&ciudadano=${recibo.ciudadano.id}">Recibos</a>
+                                > Recibo 
+                            </c:when>
+                            <c:otherwise>
+                                <a href="FrontController?action=view_recibos">Recibos</a>
+                                > Recibo 
+                            </c:otherwise>
+                        </c:choose>
                     </p>
                     <h2>Recibo - <c:out value="${recibo.numeroRecibo}"></c:out></h2>
                     <%@include file="fragmentos/messages.jspf" %>
@@ -32,7 +40,9 @@
                         <input type="hidden" name="id" value="${recibo.id}" />
                         <%--<p><input type="submit" value="Guardar cambios"/></p>--%>
                     </form>
-                    <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${recibo.ciudadano.id}">Volver al listado de recibos y autoliquidaciones del ciudadano</a>
+                    <c:if test="${usuario.isAdministrativo()}">
+                        <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${recibo.ciudadano.id}">Volver al listado de recibos y autoliquidaciones</a>
+                    </c:if>
                 </div>
                 <div class="clr"></div>
             </div>
