@@ -15,9 +15,14 @@
                     <li><a href="FrontController?action=view_listado">Listado ciudadanos</a></li>
                     
                 </c:if>
-                <c:if test="${!usuario.isAdministrativo()}">
+                <c:if test="${usuario.isCiudadano()}">
                     <li><a href="FrontController?action=view_direccion">Cambio de domicilio</a></li>
                     <li><a href="FrontController?action=view_cert_padron">Certificado empadronamiento</a>
+                    <li><a href="FrontController?action=view_recibos">Ver recibos</a>
+                    <li><a href="FrontController?action=view_domiciliar">Domiciliar tributo</a>
+                </c:if>
+                <c:if test="${usuario.isAdministrador()}">
+                    <li><a href="FrontController?action=view_direccion">Gestionar usuarios</a></li>
                 </c:if>
             </c:otherwise>
         </c:choose>

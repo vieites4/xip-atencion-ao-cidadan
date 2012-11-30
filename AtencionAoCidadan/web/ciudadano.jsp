@@ -23,11 +23,26 @@
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
                         <%@include file="fragmentos/ciudadanoFields.jspf" %>
-                        <input type="hidden" name="action" value="alter_ciudadano"/>
+                        
                         <input type="hidden" name="id" value="${ciudadano.id}" />
-                        <p><input type="submit" value="Guardar cambios"/></p>
+                        <c:if test="${usuario.isAdministrativo()}">
+                            <c:choose>
+                                <c:when test="${ver}">
+                                    <input type="hidden" name="action" value="edit_ciudadano"/>
+                                    <p><input type="submit" value="Editar"/></p>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="hidden" name="action" value="alter_ciudadano"/>
+                                    <p>
+                                        <a href="FrontController?action=view_ciudadano&id=${ciudadano.id}">Cancelar</a>
+                                        <input type="submit" value="Guardar cambios"/>
+                                    </p>
+                                </c:otherwise>
+                            </c:choose>
+                            <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${ciudadano.id}">Ver recibos y autoliquidaciones del ciudadano</a>
+                        </c:if>
                     </form>
-                    <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${ciudadano.id}">Ver recibos y autoliquidaciones del ciudadano</a>
+                    
                 </div>
                 <div class="clr"></div>
             </div>
