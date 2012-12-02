@@ -21,7 +21,7 @@ public class Usuario implements Serializable{
     private String email; //javax.mail.internet.InternetAddress
     private String movil;
     @Column(columnDefinition="tinyint")
-    private TiposUsuarios tipo; 
+    private int tipo; 
     
     @OneToOne(mappedBy = "usuario")
     private Ciudadano ciudadano;
@@ -67,11 +67,11 @@ public class Usuario implements Serializable{
     }
 
     public int getTipo() {
-        return tipo.getValue();
+        return tipo;
     }
 
     public void setTipo(TiposUsuarios tipo) {
-        this.tipo = tipo;
+        this.tipo = tipo.getValue();
     }
     
     
@@ -79,15 +79,15 @@ public class Usuario implements Serializable{
     //TODO: añadir los campos que deba tener el usuario
     
     public Boolean isAdministrativo(){
-        return (tipo == TiposUsuarios.Administrativo);
+        return (tipo == TiposUsuarios.Administrativo.getValue());
     }
     
     public Boolean isAdministrador(){
-        return (tipo == TiposUsuarios.Administrador);
+        return (tipo == TiposUsuarios.Administrador.getValue());
     }
     
     public Boolean isCiudadano(){
-        return (tipo == TiposUsuarios.Ciudadano);
+        return (tipo == TiposUsuarios.Ciudadano.getValue());
     }
 
     public Ciudadano getCiudadano() {
