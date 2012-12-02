@@ -58,7 +58,7 @@ public class DAOTareas {
         session.getTransaction().commit();
     }
     
-     public List<Tarea> getByFilt(Long id, String tipo, String descripcion,String estado, Date fecha){
+     public List<Tarea> getByFilt(Long id, String descripcion,String estado, Date fecha, String tipo, Long realizadopor_){
         List list = null;
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();

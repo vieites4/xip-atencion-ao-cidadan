@@ -5,22 +5,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/principal.css">
         <title>Atención ao cidadán</title>
-    </head>
+ </head>
     <body>
         <div class="main">
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
             
                 <div class="main_center">
-                    <h2>Lista de tarefas</h2>
-
-                    <form action="FrontController" method="post">
-                        <input type="hidden" name="action" value="Listo_tarefa"/>
-                        <input type="submit" value="Buscar"/>
-                    </form>
-                    <c:if test="${list != null}">
-                        <%@include file="fragmentos/listTarefas.jspf" %>
-                    </c:if>
+                    <h2>Listado de ciudadanos</h2>
+                    <%@include file="fragmentos/messages.jspf" %>
+                    <%@include file="fragmentos/listTarefas.jspf" %>     
                 </div>
                 <div class="clr"></div>
             </div>

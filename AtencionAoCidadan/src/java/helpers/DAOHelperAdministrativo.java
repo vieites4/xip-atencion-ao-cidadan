@@ -151,9 +151,22 @@ public class DAOHelperAdministrativo {
             String tipo = request.getParameter("tipo");
             String descripcion = request.getParameter("descripcion");
             String estado = request.getParameter("estado");
-
+            String realizadopor_2= request.getParameter("realizadopor_");
+            Long realizadopor_ = Long.parseLong(realizadopor_2);
             
-            List<Tarea> list = DAOTareas.getInstance().getByFilt(id,tipo, descripcion, estado, fecha);
+            
+            if (tipo != null && !tipo.isEmpty()) {
+                List<Tarea> t = DAOTareas.getInstance().getByFilt(id, descripcion,estado, fecha, tipo, realizadopor_);
+                if (t == null) {
+                    request.setAttribute("top_message", "No se encontró a la tarea");
+                    return "listTarefas.jsp";
+                } else {
+                    request.setAttribute("tarea", t);
+                    return "ciudadano.jsp";
+                }
+            }
+            
+            List<Tarea> list = DAOTareas.getInstance().getByFilt(id,descripcion, estado, fecha,tipo,realizadopor_);
             request.setAttribute("list", list);
             return "listTarefas.jsp";
         } catch (Exception e) {
