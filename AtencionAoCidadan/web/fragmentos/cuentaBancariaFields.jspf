@@ -1,0 +1,13 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<%@include file="disabled.jspf" %>
+
+<input type="hidden" name="id" ${disabled} value="${cuenta.id}" />
+<label>Código:</label>
+<input type="text" name="codigo" ${disabled} value="${cuenta.codigo}" />
+<label>Banco: </label>
+<input type="text" value="banco" ${disabled} value="${cuenta.banco}" />
+<label>Descripción: </label>
+<input type="text" value="descripcion" ${disabled} value="${cuenta.descripcion}" />
+
+

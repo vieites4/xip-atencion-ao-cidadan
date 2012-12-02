@@ -88,4 +88,7 @@ td { border-bottom: 1px dotted lightblue; }
 #findCiudadano { width: 55%;  }
 #findCiudadano label { display: inline-block; margin-left: 10px; }
 
+#addDomiciliacion { width: 300px; }
+#addDomiciliacion input[type="text"]{ width: 200px;}
+
 form { padding: 0 10px; }
