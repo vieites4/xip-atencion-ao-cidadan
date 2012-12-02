@@ -44,7 +44,7 @@ public class Recibo implements Serializable {
     private GregorianCalendar dataCobro;
     private GregorianCalendar dataLimitePagamento;
     @Column(columnDefinition="tinyint")
-    private RecibosEstados estado;
+    private String estado;
     
     @ManyToOne 
     private RecibosCategoria categoria;
@@ -125,11 +125,11 @@ public class Recibo implements Serializable {
     }
 
     public String getEstado() {
-        return estado.getNombre();
+        return estado;
     }
 
     public void setEstado(RecibosEstados estado) {
-        this.estado = estado;
+        this.estado = estado.getNombre();
     }
 
     public String getReferencia() {
