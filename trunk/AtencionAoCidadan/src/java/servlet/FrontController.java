@@ -57,7 +57,7 @@ public class FrontController extends HttpServlet {
         if(u == null){
             u = new Usuario();
             u.setTipo(TiposUsuarios.Ciudadano);
-            u.setCiudadano(dao.DAOCiudadanos.getInstance().getById(new Long(24)));
+            u.setCiudadano(dao.DAOCiudadanos.getInstance().getById(new Long(124)));
             //u.setTipo(TiposUsuarios.Administrativo);
             session.setAttribute("usuario", u);
         }
