@@ -7,8 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /*
-insert into reciboscategoria(id, abreviatura, nombre)
-values (1,'IBI', 'Imposto de Bens Inmobles'), (2,'IVTM','Imposto de Vehículos de Tracción Mecánica');
+insert into reciboscategoria(id, abreviatura, nombre, referencia)
+values (1,'IBI', 'Imposto de Bens Inmobles', ''), 
+(2,'IVTM','Imposto de Vehículos de Tracción Mecánica', 'Matrícula');
 */
 
 /**
@@ -23,6 +24,7 @@ public class RecibosCategoria implements Serializable {
     private Long id;
     private String nombre;
     private String abreviatura;
+    private String referencia; /* Que es la referencia? Por ejemplo la matricula para el IVTM */
     @Column(nullable = false)
     private boolean periodico = false; 
     
@@ -62,6 +64,14 @@ public class RecibosCategoria implements Serializable {
 
     public void setPeriodico(boolean periodico) {
         this.periodico = periodico;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
     
     

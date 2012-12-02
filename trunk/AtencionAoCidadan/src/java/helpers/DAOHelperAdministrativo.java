@@ -153,7 +153,7 @@ public class DAOHelperAdministrativo {
             String estado = request.getParameter("estado");
             String realizadopor_2= request.getParameter("realizadopor_");
             Long realizadopor_ = Long.parseLong(realizadopor_2);
-            
+
             
             if (tipo != null && !tipo.isEmpty()) {
                 List<Tarea> t = DAOTareas.getInstance().getByFilt(id, descripcion,estado, fecha, tipo, realizadopor_);
@@ -189,6 +189,7 @@ public class DAOHelperAdministrativo {
         Long id = Long.parseLong(request.getParameter("id"));
         Recibo r = DAORecibos.getInstance().getById(id);
         request.setAttribute("recibo", r);
+        request.setAttribute("ver", true);
         return "recibo.jsp";
     }
 

@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-import model.Ciudadano;
 import model.RecibosCategoria;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
@@ -32,7 +31,7 @@ public class DAORecibosCategorias {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        c = (RecibosCategoria) session.load(Ciudadano.class, id);
+        c = (RecibosCategoria) session.load(RecibosCategoria.class, id);
         session.getTransaction().commit();
 
         return c;
@@ -62,7 +61,7 @@ public class DAORecibosCategorias {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         // consulta filtrando por ...
-        Criteria c = session.createCriteria(Ciudadano.class);
+        Criteria c = session.createCriteria(RecibosCategoria.class);
         if(periodico != null ){
             c.add(Restrictions.eq("periodico", periodico));
         }

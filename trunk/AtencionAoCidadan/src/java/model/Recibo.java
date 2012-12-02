@@ -39,7 +39,7 @@ public class Recibo implements Serializable {
     private Float importe;
     private boolean esAutoliquidacion = false;
     private int ano; //Ano liquidcion
-    private String tipo;
+    private String tipo; /* RB o AU */
     private GregorianCalendar dataAprobacion;
     private GregorianCalendar dataCobro;
     private GregorianCalendar dataLimitePagamento;

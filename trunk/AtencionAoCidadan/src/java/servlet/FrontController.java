@@ -50,14 +50,15 @@ public class FrontController extends HttpServlet {
         String dir = "index.jsp";
         log.log(Level.INFO, "Request action: {0}", action);
         
-        //TODO: borrar esto cuando haya inicio de sesion
         HttpSession session = request.getSession(true);
+        
+        //TODO: borrar esto cuando haya inicio de sesion
         Usuario u = (Usuario) session.getAttribute("usuario");
         if(u == null){
             u = new Usuario();
             u.setTipo(TiposUsuarios.Ciudadano);
             u.setCiudadano(dao.DAOCiudadanos.getInstance().getById(new Long(24)));
-            u.setTipo(TiposUsuarios.Administrativo);
+            //u.setTipo(TiposUsuarios.Administrativo);
             session.setAttribute("usuario", u);
         }
         
@@ -128,8 +129,10 @@ public class FrontController extends HttpServlet {
                 dir = helperCiudadano.onListRecibos(request, response, u);
             } else if ("view_recibo".equalsIgnoreCase(action)) {    
                 dir = helperCiudadano.onViewRecibo(request, response);
-            } else if ("view_domiciliacion".equalsIgnoreCase(action)) {    
-                dir = helperCiudadano.onViewDomiciliacion(request, response, u);
+            } else if ("view_domiciliar".equalsIgnoreCase(action)) {    
+                dir = helperCiudadano.onViewDomiciliar(request, response, u);
+            } else if ("add_domiciliacion".equalsIgnoreCase(action)) {    
+                dir = helperCiudadano.onAddDomiciliacion(request, response, u);
             } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)){
                 dir = helperCiudadano.onViewCiudadano(request, response, u);
             } else {//Sin accion
