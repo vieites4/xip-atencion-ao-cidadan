@@ -6,8 +6,8 @@
 <label>Código:</label>
 <input type="text" name="codigo" ${disabled} value="${cuenta.codigo}" />
 <label>Banco: </label>
-<input type="text" value="banco" ${disabled} value="${cuenta.banco}" />
+<input type="text" name="banco" ${disabled} value="${cuenta.banco}" />
 <label>Descripción: </label>
-<input type="text" value="descripcion" ${disabled} value="${cuenta.descripcion}" />
+<input type="text" name="descripcion" ${disabled} value="${cuenta.descripcion}" />
 
 
