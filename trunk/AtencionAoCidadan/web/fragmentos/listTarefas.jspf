@@ -23,7 +23,6 @@
                     <td>${t.descripcion}</td>
                     <td>${t.estado}</td>
                     <td>${t.fecha}</td>
-                    <td><a href="FrontController?action=view_tarefas&id=${c.id}">Ver</a></td>
                 </tr>
             </c:forEach>
         </table>
