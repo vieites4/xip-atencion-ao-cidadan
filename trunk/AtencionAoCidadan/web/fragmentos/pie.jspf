@@ -1,10 +1,20 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <footer class="footer">
-  <div class="footer_resize">
-    <p class="leftt">© Copyright . All Rights Reserved. <a href="index.jsp"> Home</a> </p>
-    <p class="right">Xestión Integral de Proxectos</p>
+
+    <div class="footer_resize">
+        <c:if test="${usuario != null}">
+            <p>
+               Sesión iniciada como  <c:out value="${usuario.usuario}"/>
+            <form action="FrontController" method="POST">
+                <input type="hidden" name="action" value="logout"/>
+                <input type="submit" value="Cerrar sesión"/>
+            </form>
+            </p>
+        </c:if>
+        <p class="leftt">© Copyright . All Rights Reserved. <a href="index.jsp"> Home</a> </p>
+        <p class="right">Xestión Integral de Proxectos</p>
+        <div class="clr"></div>
+    </div>
     <div class="clr"></div>
-  </div>
-  <div class="clr"></div>
 </footer>

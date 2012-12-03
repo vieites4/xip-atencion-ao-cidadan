@@ -16,13 +16,23 @@
         <div class="main">
             <div class="main_resize">
                 <%@include file="fragmentos/cabecera.jspf" %>
-                <div class="main_center">
-                    <h2>Inicio</h2>
-                    <p>Pode escoller unha opción do menú para realizar algunha tarefa.</p>
+
+                <c:choose>
+                    <c:when test="${usuario == null}">
+                        <%@include file="fragmentos/login.jspf" %>
+                    </c:when>
+                    <c:otherwise>
+
+                        <div class="main_center">
+                            <h2>Inicio</h2>
+                            <p>Pode escoller unha opción do menú para realizar algunha tarefa.</p>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+                
+                    <div class="clr"></div>
                 </div>
-                <div class="clr"></div>
+                <%@include file="fragmentos/pie.jspf" %>
             </div>
-            <%@include file="fragmentos/pie.jspf" %>
-        </div>
-    </body>
-</html>
+        </body>
+    </html>

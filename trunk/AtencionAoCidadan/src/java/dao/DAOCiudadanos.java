@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 import model.Ciudadano;
+import model.Usuario;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
@@ -40,6 +41,28 @@ public class DAOCiudadanos {
         return c;
 
     }
+    
+    
+    /**
+     * Obtiene un ciudadano por id
+     */
+    public Ciudadano getByUser(Usuario u) {
+
+        Ciudadano c = null;
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        //c = (Ciudadano) session.load(Ciudadano.class, id);
+        c = (Ciudadano) session.createCriteria(Ciudadano.class).
+                add(Restrictions.eq("usuario", u)).
+                uniqueResult();
+        session.getTransaction().commit();
+
+        return c;
+
+    }
+    
+    
 
     /**
      * Obtiene un ciudadano por dni
