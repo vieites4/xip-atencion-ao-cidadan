@@ -17,9 +17,13 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
+
+    
     private String usuario;
     private String email; //javax.mail.internet.InternetAddress
     private String movil;
+    private String password;
+    
     @Column(columnDefinition="tinyint")
     private int tipo; 
     
@@ -97,7 +101,25 @@ public class Usuario implements Serializable{
     public void setCiudadano(Ciudadano ciudadano) {
         this.ciudadano = ciudadano;
     }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", email=" + email + ", movil=" + movil + ", password=" + password + ", tipo=" + tipo + '}';
+    }
     
     
 }

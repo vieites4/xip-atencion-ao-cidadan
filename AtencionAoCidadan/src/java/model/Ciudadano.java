@@ -1,5 +1,6 @@
 package model;
 
+import helpers.UserCredentials;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -46,6 +47,8 @@ public class Ciudadano implements Serializable {
     /* Constructores */
     public Ciudadano() {
     }
+
+    
 
     /* Getters & setters */
     public Long getId() {
@@ -167,6 +170,11 @@ public class Ciudadano implements Serializable {
     public void onCreate() {
         this.usuario = new Usuario();
         this.usuario.setTipo(TiposUsuarios.Ciudadano);
+        this.usuario.setCiudadano(this);
+        
+        UserCredentials credentials = UserCredentials.forUser(usuario);
+        this.usuario.setPassword(credentials.getPassword());
+        this.usuario.setUsuario(credentials.getUsername());
     }
 
     public boolean validate() {
@@ -181,7 +189,10 @@ public class Ciudadano implements Serializable {
         this.recibos = recibos;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Ciudadano{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", cp=" + cp + ", nivelInstruccion=" + nivelInstruccion + ", telefono=" + telefono + ", designacion=" + designacion + '}';
+    }
     
     
 }

@@ -16,10 +16,25 @@ import javax.servlet.annotation.WebListener;
 @WebListener()
 public class SessionListener implements ServletContextListener {
 
+    
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        
+       String enableLoginValue = sce.getServletContext().getInitParameter("enable_login");
+       
+       boolean enableLogin = true;
+       
+       try{
+           enableLogin = Boolean.parseBoolean(enableLoginValue);
+       }catch(Exception e){
+           // Do nothing
+       }
+       
+       AppConfig.enableLogin = enableLogin;
+       
         // initialize hibernate
         HibernateUtil.getSessionFactory();
+        
     }
 
     @Override

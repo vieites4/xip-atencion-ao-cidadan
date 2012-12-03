@@ -43,7 +43,8 @@ public class Recibo implements Serializable {
     private GregorianCalendar dataAprobacion;
     private GregorianCalendar dataCobro;
     private GregorianCalendar dataLimitePagamento;
-    @Column(columnDefinition="tinyint")
+    
+    //@Column(columnDefinition="tinyint")
     private String estado;
     
     @ManyToOne 

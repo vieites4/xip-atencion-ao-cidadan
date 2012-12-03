@@ -61,7 +61,7 @@ public class DAOHelperAdministrativo {
                 DAOCiudadanos.getInstance().saveOrUpdate(c);
                 c.onCreate();
                 DAOUsuarios.getInstance().saveOrUpdate(c.getUsuario());
-                request.setAttribute("top_message", "Ciudadano '" + c.getDni() + "' registrado correctamente!");
+                request.setAttribute("top_message", "Ciudadano '" + c.getDni() + "' registrado correctamente!<br>Credenciales: " + c.getUsuario().getUsuario() + ", " + c.getUsuario().getPassword());
             }
             else{
                 request.setAttribute("error_cause", "Los datos proporcionados no son válidos");

@@ -6,7 +6,9 @@ package dao;
 
 import model.Tarea;
 import model.Usuario;
+import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -32,6 +34,27 @@ public class DAOUsuarios {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         c = (Usuario) session.load(Usuario.class, id);
+        session.getTransaction().commit();
+
+        return c;
+
+    }
+    
+    
+    
+     public Usuario getByUserName(String username) {
+
+        Usuario c = null;
+
+        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        // consulta filtrando por ...
+        Criteria t = session.createCriteria(Usuario.class);
+        t.add(Restrictions.eq("usuario", username));
+        
+        c = (Usuario) t.uniqueResult();
+        
         session.getTransaction().commit();
 
         return c;

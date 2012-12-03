@@ -1,14 +1,22 @@
 <%@ page pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header class="header">
     <div class="logo"><a href="index.jsp"><img src="images/corporacion.jpg" height="74" border="0" alt="logo" /></a></div>
+     
     <h1>Atención ao Cidadán</h1>
     <h2>Concello de Antas de Ulla</h2>
     <div class="clr"></div>
-    <%@include file="menu.jspf" %>
+
+    <%@include file="messages.jspf" %>
+    
+    <c:if test="${usuario != null}">
+    
+    </c:if>
+
+        <%@include file="menu.jspf" %>
     <div class="click">
         <p>Teléfono de atención ao cidadán: 982 379 251</p>
     </div>
-  <div class="clr"></div>
+    <div class="clr"></div>
 </header>
 <div class="clr"></div>
