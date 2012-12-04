@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Ciudadano;
 import model.Recibo;
 import model.Tarea;
+import model.Usuario;
 
 /**
  *
@@ -141,35 +142,18 @@ public class DAOHelperAdministrativo {
             return "index.jsp";
         }
     }
-    public String onSearchTarea(HttpServletRequest request, HttpServletResponse response) {
+    public String onSearchTarea(HttpServletRequest request, HttpServletResponse response, Usuario u) {
         try {
-            String id1 = request.getParameter("id");
-            Long id = Long.parseLong(id1);
-            String fecha2=request.getParameter("fecha");
-            SimpleDateFormat f=new SimpleDateFormat("dd/MM/yy");
-            Date fecha= f.parse(fecha2);
-            String tipo = request.getParameter("tipo");
-            String descripcion = request.getParameter("descripcion");
-            String estado = request.getParameter("estado");
-            String realizadopor_2= request.getParameter("realizadopor_");
-            Long realizadopor_ = Long.parseLong(realizadopor_2);
-
-            
-            if (tipo != null && !tipo.isEmpty()) {
-                List<Tarea> t = DAOTareas.getInstance().getByFilt(id, descripcion,estado, fecha, tipo, realizadopor_);
-                if (t == null) {
-                    request.setAttribute("top_message", "No se encontró a la tarea");
-                    return "listTarefas.jsp";
-                } else {
-                    request.setAttribute("tarea", t);
-                    return "ciudadano.jsp";
-                }
-            }
-            
-            List<Tarea> list = DAOTareas.getInstance().getByFilt(id,descripcion, estado, fecha,tipo,realizadopor_);
-            request.setAttribute("list", list);
+            //            String realizadopor_2= request.getParameter("realizadopor_");
+  //          Long realizadopor_ = Long.parseLong(realizadopor_2);
+         
+                      
+            List<Tarea> list = DAOTareas.getInstance().getAll();
+            request.setAttribute("listTarefas", list);
             return "listTarefas.jsp";
         } catch (Exception e) {
+            
+            Logger.getLogger(DAOHelperAdministrativo.class.getName()).log(Level.SEVERE, null, e);
             // log error
             // redirect to error page or show error message
             return "index.jsp";
