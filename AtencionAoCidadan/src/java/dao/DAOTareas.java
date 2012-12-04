@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import model.Tarea;
+import model.Usuario;
 import org.hibernate.classic.Session;
 
 /**
@@ -58,7 +59,7 @@ public class DAOTareas {
         session.getTransaction().commit();
     }
     
-     public List<Tarea> getByFilt(Long id, String descripcion,String estado, Date fecha, String tipo, Long realizadopor_){
+     public List<Tarea> getByFilt(Long id, String descripcion,String estado, Date fecha, String tipo, Usuario realizadopor_){
         List list = null;
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -80,7 +81,20 @@ public class DAOTareas {
         return list;
     }
     
-    
+     public List<Tarea> getAll(){
+        List list = null;
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        // consulta filtrando por ...
+        Criteria t = session.createCriteria(Tarea.class);
+       
+        list = (List<Tarea>)t.list();
+
+        session.getTransaction().commit();
+
+        return list;
+    }
     
     
 }
