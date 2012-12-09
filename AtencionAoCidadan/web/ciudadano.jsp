@@ -32,7 +32,7 @@
                                     <p><input type="submit" value="Editar"/></p>
                                 </c:when>
                                 <c:otherwise>
-                                    <input type="hidden" name="action" value="alter_ciudadano"/>
+                                    <input type="hidden" name="action" value="update_ciudadano"/>
                                     <p>
                                         <a href="FrontController?action=view_ciudadano&id=${ciudadano.id}">Cancelar</a>
                                         <input type="submit" value="Guardar cambios"/>

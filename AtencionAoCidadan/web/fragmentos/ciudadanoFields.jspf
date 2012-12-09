@@ -12,6 +12,14 @@
 <input name="dni" type="text" ${disabled} value="${ciudadano.dni}"/>
 <label>Teléfono</label>
 <input name="telefono" type="text" ${disabled} value="${ciudadano.telefono}"/>
+<label>Móvil</label>
+<input name="movil" type="text" ${disabled} value="${ciudadano.movil}"/>
+<label>Dirección</label>
+<input name="direccion" type="text" ${disabled} value="${ciudadano.direccion}"/>
+<label>Código Postal</label>
+<input name="cp" type="text" ${disabled} value="${ciudadano.cp}"/>
+<label>Correo Electrónico</label>
+<input name="email" type="text" ${disabled} value="${ciudadano.email}"/>
 <label>Nivel inst.</label>
 <input name="nivelInstruccion" type="text" ${disabled} value="${ciudadano.nivelInstruccion}"/>
 <label>Designacion</label>

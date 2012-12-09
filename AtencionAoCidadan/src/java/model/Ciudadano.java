@@ -26,10 +26,13 @@ public class Ciudadano implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+    
     private String nombre;
     private String apellidos;
+    
     @Column(unique = true)
     private String dni; //o pasaporte
+    
     private String sexo; /* F o M */
 
     private String direccion;
@@ -37,6 +40,8 @@ public class Ciudadano implements Serializable {
     private String nivelInstruccion;
     private String telefono; //Opcional
     private String designacion;//Opcional
+    private String email;
+    private String movil;
     
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Usuario usuario;
@@ -155,6 +160,30 @@ public class Ciudadano implements Serializable {
         this.designacion = designacion;
     }
 
+     public String getMovil() {
+        return movil;
+    }
+
+    public void setMovil(String movil) {
+        this.movil = movil;
+    }
+    
+     public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+    
+     public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public Usuario getUsuario() {
         return usuario;
     }
