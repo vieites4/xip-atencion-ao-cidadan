@@ -57,6 +57,10 @@ public class DAOHelperAdministrativo {
             c.setDesignacion(request.getParameter("designacion"));
             c.setTelefono(request.getParameter("telefono"));
             c.setNivelInstruccion(request.getParameter("nivelInstruccion"));
+            c.setMovil(request.getParameter("movil"));
+            c.setEmail(request.getParameter("email"));
+            c.setSexo(request.getParameter("sexo"));
+            c.setCp(request.getParameter("cp"));
 
             if (c.validate()) {
                 DAOCiudadanos.getInstance().saveOrUpdate(c);
@@ -81,16 +85,41 @@ public class DAOHelperAdministrativo {
     public String onUpdateCiudadano(HttpServletRequest request, HttpServletResponse response) {
 
         try {
-            Ciudadano c = new Ciudadano();
-
-            c.setDireccion("Santiago de Compostela"); // request.getParameter("direction");
-            // ...
-
-            DAOCiudadanos.getInstance().saveOrUpdate(c);
-            return "ciudadano.jsp";
+            Long id = Long.parseLong(request.getParameter("id"));
+            Ciudadano c = DAOCiudadanos.getInstance().getById(id);
+            if(c == null){
+                request.setAttribute("error_cause", "El ciudadano ya no existe en los registros");  
+                return "index.jsp";
+            }else{
+                c.setNombre(request.getParameter("name"));
+                c.setApellidos(request.getParameter("surname"));
+                c.setDni(request.getParameter("dni"));
+                c.setDireccion(request.getParameter("direccion"));
+                c.setDesignacion(request.getParameter("designacion"));
+                c.setTelefono(request.getParameter("telefono"));
+                c.setNivelInstruccion(request.getParameter("nivelInstruccion"));
+                c.setMovil(request.getParameter("movil"));
+                c.setEmail(request.getParameter("email"));
+                c.setSexo(request.getParameter("sexo"));
+                c.setCp(request.getParameter("cp"));
+                
+                if (c.validate()) {
+                    DAOCiudadanos.getInstance().saveOrUpdate(c);
+                    c.onCreate();
+                   
+                    request.setAttribute("top_message", "Ciudadano '" + c.getDni() + "' modificado correctamente!");
+                }
+                else{
+                    request.setAttribute("error_cause", "Los datos proporcionados no son válidos");
+                } 
+                        
+                return "index.jsp";
+            }
+            
         } catch (Exception e) {
             // log error
             // redirect to error page or show error message
+            request.setAttribute("top_message", "Error al Guardar Cambios " );
             return "index.jsp";
         }
 
