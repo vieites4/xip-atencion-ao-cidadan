@@ -1,18 +1,22 @@
 package helpers;
 
+import dao.DAOCiudadanos;
 import dao.DAOCuentaBancaria;
 import dao.DAODomiciliacion;
 import dao.DAORecibos;
 import dao.DAORecibosCategorias;
+import dao.DAOTareas;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Ciudadano;
 import model.CuentaBancaria;
 import model.Domiciliacion;
 import model.Recibo;
 import model.RecibosCategoria;
+import model.Tarea;
 import model.Usuario;
 
 /**
@@ -74,5 +78,25 @@ public class DAOHelperCiudadano {
         
         return onViewDomiciliar(request, response, u);
     }
+      
+    public String onViewDireccion(HttpServletRequest request, HttpServletResponse response, Usuario u) throws IOException {
        
+        //Ciudadano c = DAOCiudadanos.getInstance().getById(u.getId()); 
+        Ciudadano c = u.getCiudadano();
+        request.setAttribute("ciudadano", c);
+        return "cambioDireccion.jsp";
+    }
+    
+    public String onChangeDireccion(HttpServletRequest request, HttpServletResponse response, Usuario u) throws IOException {
+        String nuevaDir = request.getParameter("direccion_nueva");
+        Tarea t = new Tarea();
+        t.setEstado("Pendiente");
+        t.setRealizadaPor(u);
+        t.setTipo("Cambio de Domicilio");
+        t.setDescripcion("Nueva Direccion: "+nuevaDir);
+        
+        DAOTareas.getInstance().saveOrUpdate(t);
+        request.setAttribute("top_message", "Solicitud de Cambio de Domicilio Enviada."); 
+        return "index.jsp";
+    }
 }
