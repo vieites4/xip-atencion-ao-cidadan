@@ -145,7 +145,7 @@ public class FrontController extends HttpServlet {
                 if ("view_cert_padron".equalsIgnoreCase(action)) {
                     dir = "getCertificado.jsp";
                 } else if ("view_direccion".equalsIgnoreCase(action)) {
-                    dir = "cambioDireccion.jsp";
+                    dir = helperCiudadano.onViewDireccion(request, response, u);
                 } else if ("view_recibos".equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onListRecibos(request, response, u);
                 } else if ("view_recibo".equalsIgnoreCase(action)) {
@@ -156,6 +156,8 @@ public class FrontController extends HttpServlet {
                     dir = helperCiudadano.onAddDomiciliacion(request, response, u);
                 } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onViewCiudadano(request, response, u);
+                } else if ("change_direccion".equalsIgnoreCase(action)) {
+                    dir = helperCiudadano.onChangeDireccion(request, response, u);
                 } else {//Sin accion
                     log.log(Level.INFO, "No action performed!");
                     //@TODO Handle else

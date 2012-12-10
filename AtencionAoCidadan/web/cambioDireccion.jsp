@@ -15,12 +15,15 @@
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
                         Nombre<br>
-                        <input name="name" type="text"/><br/>
+                        <input name="name" type="text" value="${ciudadano.nombre}" disabled=""/><br/>
                         Apellidos<br/>
-                        <input name="surname" type="text"/><br/>
-                        Nombre<br>
+                        <input name="surname" type="text" value="${ciudadano.apellidos}" disabled=""/><br/>
+                        Dirección Actual<br>
+                        <input name="direccion" type="text" value="${ciudadano.direccion}" disabled=""/><br/>
+                        Nueva Dirección<br>
+                        <input name="direccion_nueva" type="text" /><br/>
                         <input type="hidden" name="action" value="change_direccion"/>
-                        <input type="submit" value="Enviar"/>
+                        <input type="submit" value="Guardar Cambios"/>
                     </form>
 
                 </div>
