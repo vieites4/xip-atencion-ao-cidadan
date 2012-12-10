@@ -33,6 +33,9 @@ public class FrontController extends HttpServlet {
     private static String VIEW_LISTADO = "VIEW_LISTADO";
     private static String VIEW_CIUDADANO = "VIEW_CIUDADANO";
     private static String EDIT_CIUDADANO = "EDIT_CIUDADANO";
+    private static String VIEW_CERT_CORRIENTE_PAGO = "VIEW_CERT_CORRIENTE_PAGO";
+    
+    
     private static String LOGIN = "LOGIN";
     private static String LOGOUT = "LOGOUT";
     private static DAOHelperAdministrativo helperAdministrativo = new DAOHelperAdministrativo();
@@ -160,6 +163,8 @@ public class FrontController extends HttpServlet {
                     dir = helperCiudadano.onChangeDireccion(request, response, u);
                 } else if ("solicitar_cert".equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onSolicitarCert(request, response, u);
+                }else if (VIEW_CERT_CORRIENTE_PAGO.equalsIgnoreCase(action)) {
+                    dir = helperCiudadano.onSolicitarCertCorrientePago(request, response, u);
                 } else {//Sin accion
                     log.log(Level.INFO, "No action performed!");
                     //@TODO Handle else
