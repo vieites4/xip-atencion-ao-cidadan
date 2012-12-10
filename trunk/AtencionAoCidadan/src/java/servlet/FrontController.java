@@ -158,6 +158,8 @@ public class FrontController extends HttpServlet {
                     dir = helperCiudadano.onViewCiudadano(request, response, u);
                 } else if ("change_direccion".equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onChangeDireccion(request, response, u);
+                } else if ("solicitar_cert".equalsIgnoreCase(action)) {
+                    dir = helperCiudadano.onSolicitarCert(request, response, u);
                 } else {//Sin accion
                     log.log(Level.INFO, "No action performed!");
                     //@TODO Handle else

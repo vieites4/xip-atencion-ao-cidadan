@@ -12,15 +12,13 @@
                 <%@include file="fragmentos/cabecera.jspf" %>
                 <div class="main_center">
                     <h2>Certificado de empadronamento</h2>
+                    <h3>Por este medio puede solicitar un certificado de empadronamiento.
+                        <br> El certificado acredita los datos que constan en el padrón municipal para todas las personas que residen en la misma vivienda que el interesado.</h3>
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
-                        Nombre<br>
-                        <input name="name" type="text"/><br/>
-                        Apellidos<br/>
-                        <input name="surname" type="text"/><br/>
-                        Nombre<br>
-                        <input type="hidden" name="action" value="add_ciudadano"/>
-                        <input type="submit" value="Dar de alta en el padrón"/>
+                        
+                        <input type="hidden" name="action" value="solicitar_cert"/>
+                        <input type="submit" value="Solicitar Certificado de Empadronamiento"/>
                     </form>
 
                 </div>
