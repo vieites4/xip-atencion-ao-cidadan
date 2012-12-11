@@ -136,6 +136,13 @@ public class DAOHelperCiudadano {
         }
 
         if (corriente) {
+            Tarea t = new Tarea();
+            t.setEstado("Pendiente");
+            t.setRealizadaPor(u);
+            t.setTipo("Solicitud certificado corriente de pago");
+            t.setDescripcion("Estado actual: Sin recibos pendientes");
+
+            DAOTareas.getInstance().saveOrUpdate(t);
             request.setAttribute("top_message", "Su solicitud ha sido realizada con éxito. <br/> En breve la recibirá en su domicilio mediante correo postal.");
         } else {
             request.setAttribute("top_message", "No ha sido posible realizar su solicitud. Esto puede deberse a que en estos momentos tiene algún recibo pendiente de pago. Para más información vaya a la sección <a href='FrontController?action=view_recibos'>Recibos</a> o contacte con nosotros en nuestro número de atención al público.");

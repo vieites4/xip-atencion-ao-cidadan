@@ -12,7 +12,7 @@
                 <%@include file="fragmentos/cabecera.jspf" %>
             
                 <div class="main_center">
-                    <h2>Listado de ciudadanos</h2>
+                    <h2>Listado de tareas</h2>
                     <%@include file="fragmentos/messages.jspf" %>
                     <%@include file="fragmentos/listTarefas.jspf" %>     
                 </div>
