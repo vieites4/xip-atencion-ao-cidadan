@@ -24,7 +24,7 @@ public class Usuario implements Serializable{
     private String movil;
     private String password;
     
-    @Column(columnDefinition="tinyint")
+//    @Column(columnDefinition="tinyint")
     private int tipo; 
     
     @OneToOne(mappedBy = "usuario")
