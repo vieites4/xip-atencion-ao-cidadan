@@ -26,6 +26,7 @@
                     <td>${t.fecha}</td>
                     <td>${t.tipo}</td>
                     <td>${t.realizadaPor.usuario}</td>
+                     <td><a href="FrontController?action=view_tarea&id=${t.id}">Ver</a></td>
                 </tr>
             </c:forEach>
         </table>
