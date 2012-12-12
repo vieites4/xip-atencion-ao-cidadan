@@ -33,6 +33,7 @@
                         </c:choose>
                     </p>
                     <h2>Recibo - <c:out value="${recibo.numeroRecibo}"></c:out></h2>
+                    
                     <%@include file="fragmentos/messages.jspf" %>
                     <form action="FrontController" method="post">
                         <%@include file="fragmentos/reciboFields.jspf" %>
@@ -40,12 +41,16 @@
                         <input type="hidden" name="id" value="${recibo.id}" />
                         <%--<p><input type="submit" value="Guardar cambios"/></p>--%>
                     </form>
-                    <c:if test="${usuario.isAdministrativo()}">
+                    </p>
+                    <a href="javascript:generarPDF()">Xerar PDF</a>
+                        <c:if test="${usuario.isAdministrativo()}">
                         <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${recibo.ciudadano.id}">Volver al listado de recibos y autoliquidaciones</a>
+ 
                     </c:if>
                 </div>
                 <div class="clr"></div>
             </div>
+
         <%@include file="fragmentos/pie.jspf" %>
         </div>
     </body>
