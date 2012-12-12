@@ -107,7 +107,11 @@ public class FrontController extends HttpServlet {
                     //Tareas
                 } else if ("view_tarefas".equalsIgnoreCase(action)) {
                     dir = helperAdministrativo.onSearchTarea(request, response,u);
+ } else if ("view_tareaa".equalsIgnoreCase(action)) {
+                    dir = helperAdministrativo.onPdf(request, response,u);
 
+                    //Recibos
+                
                     //Recibos
                 } else if ("view_recibos".equalsIgnoreCase(action)) {
                     dir = helperAdministrativo.onListRecibos(request, response);

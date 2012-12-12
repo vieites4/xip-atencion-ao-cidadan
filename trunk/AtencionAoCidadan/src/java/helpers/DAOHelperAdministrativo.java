@@ -188,6 +188,23 @@ public class DAOHelperAdministrativo {
             return "index.jsp";
         }
     }
+    public String onPdf(HttpServletRequest request, HttpServletResponse response, Usuario u) {
+        try {
+            //            String realizadopor_2= request.getParameter("realizadopor_");
+  //          Long realizadopor_ = Long.parseLong(realizadopor_2);
+         
+                      
+            List<Tarea> list = DAOTareas.getInstance().getAll();///teño que cambiar esto por pdf no seu caso
+            request.setAttribute("listTarefas", list);
+            return "listTarefas.jsp";
+        } catch (Exception e) {
+            
+            Logger.getLogger(DAOHelperAdministrativo.class.getName()).log(Level.SEVERE, null, e);
+            // log error
+            // redirect to error page or show error message
+            return "index.jsp";
+        }
+    }
     
     public String onListRecibos(HttpServletRequest request, HttpServletResponse response) {
         Long ciudadanoId = Long.parseLong(request.getParameter("ciudadano"));
