@@ -193,10 +193,8 @@ public class DAOHelperAdministrativo {
             //            String realizadopor_2= request.getParameter("realizadopor_");
   //          Long realizadopor_ = Long.parseLong(realizadopor_2);
          
-                      
-            List<Tarea> list = DAOTareas.getInstance().getAll();///teño que cambiar esto por pdf no seu caso
-            request.setAttribute("listTarefas", list);
-            return "listTarefas.jsp";
+                   ///   aqui tería que condicionalo a esa petición
+            return "jsExample.jsp";
         } catch (Exception e) {
             
             Logger.getLogger(DAOHelperAdministrativo.class.getName()).log(Level.SEVERE, null, e);
