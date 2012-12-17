@@ -112,7 +112,18 @@ public class DAOHelperCiudadano {
         request.setAttribute("top_message", "Solicitud de Certificado de Empadronamiento Enviada.");
         return "index.jsp";
     }
+public String onTarxetaAparcamento(HttpServletRequest request, HttpServletResponse response, Usuario u) throws IOException {
+        Ciudadano c = u.getCiudadano();
+        Tarea t = new Tarea();
+        t.setEstado("Pendiente");
+        t.setRealizadaPor(u);
+        t.setTipo("Solicitud de Tarxeta Aparcamento");
+        //t.setDescripcion("Datos del Certificado: ");//c.getCiudadano();
 
+        DAOTareas.getInstance().saveOrUpdate(t);
+        request.setAttribute("top_message", "Solicitud de Tarxeta de Aparcamento Enviada.");
+        return "index.jsp";
+    }
     public String onSolicitarCertCorrientePago(HttpServletRequest request, HttpServletResponse response, Usuario u) throws IOException {
 
         List<Recibo> recibos = DAORecibos.getInstance().getByFilters(u.getCiudadano().getId());

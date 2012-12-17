@@ -17,8 +17,8 @@
                 </c:if>
                 <c:if test="${usuario.isCiudadano()}">
                     <li><a href="FrontController?action=view_direccion">Cambio de domicilio</a></li>
-<!--                    <li><a href="FrontController?action=view_cert_padron">Certificado empadronamiento</a>-->
-                        <li><a href="certificados.jsp">Certificados</a>
+                   <li><a href="FrontController?action=view_tarxeta_aparcamento">Solicitar tarx. de aparcamento</a>
+                    <li><a href="certificados.jsp">Certificados</a>
                     <li><a href="FrontController?action=view_recibos">Ver recibos</a>
                     <li><a href="FrontController?action=view_domiciliar">Domiciliar tributo</a>
                 </c:if>
