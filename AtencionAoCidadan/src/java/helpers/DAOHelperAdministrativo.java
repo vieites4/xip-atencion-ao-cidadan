@@ -192,9 +192,10 @@ public class DAOHelperAdministrativo {
         try {
             //            String realizadopor_2= request.getParameter("realizadopor_");
   //          Long realizadopor_ = Long.parseLong(realizadopor_2);
-         
-                   ///   aqui tería que condicionalo a esa petición
-            return "jsExample.jsp";
+         List<Tarea> t=DAOTareas.getInstance().getAll();
+         request.setAttribute("list", t);   //como se clasifica o modo de realizar a tarefa
+         ///   aqui tería que condicionalo a esa petición
+            return "FacerTarefas.jsp";
         } catch (Exception e) {
             
             Logger.getLogger(DAOHelperAdministrativo.class.getName()).log(Level.SEVERE, null, e);
