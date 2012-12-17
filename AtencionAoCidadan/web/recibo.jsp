@@ -21,10 +21,18 @@
             function generarPDF () {
                 var doc = new jsPDF();
                 doc.setFontSize(22);
-                doc.text(20, 20, 'Recibo de '+ '${recibo.referencia}');
+                doc.text(20, 20, 'Recibo de '+ '${recibo.ciudadano.nombre}'+ ' '+'${recibo.ciudadano.apellidos}');
                 doc.setFontSize(16);
-                doc.text(20, 30, 'This is some normal sized text underneath.');	
-                doc.output('datauri');
+                doc.text(20, 30, 'Categoría: '+ '${recibo.categoria.nombre}');
+                doc.text(20, 40, 'Número de recibo: '+ '${recibo.numeroRecibo}');
+                doc.text(20, 50, 'Tipo: '+ '${recibo.tipo}');
+                doc.text(20, 60, 'Referencia: '+ '${recibo.referencia}');
+                doc.text(20, 70, 'Importe: '+ '${recibo.importe}'+ ' euros');
+                doc.text(20, 80, 'Estado: '+ '${recibo.estado}');
+                doc.text(20, 90, 'Data de aprobación: '+ '${recibo.dataAprobacionFormateada}');
+                doc.text(20, 100, 'Data de cobro: '+ '${recibo.dataCobroFormateada}');
+                doc.text(20, 110, 'Data límite de pagamento'+ '${recibo.dataLimiteFormateada}');
+  doc.output('datauri');
             }
 
         </script>
@@ -72,3 +80,4 @@
         </div>
     </body>
 </html>
+5
