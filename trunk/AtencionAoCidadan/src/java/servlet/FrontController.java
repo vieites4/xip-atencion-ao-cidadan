@@ -34,7 +34,7 @@ public class FrontController extends HttpServlet {
     private static String VIEW_CIUDADANO = "VIEW_CIUDADANO";
     private static String EDIT_CIUDADANO = "EDIT_CIUDADANO";
     private static String VIEW_CERT_CORRIENTE_PAGO = "VIEW_CERT_CORRIENTE_PAGO";
-    
+    private static String VIEW_TARXETA = "view_tarxeta_aparcamento";
     
     private static String LOGIN = "LOGIN";
     private static String LOGOUT = "LOGOUT";
@@ -104,6 +104,7 @@ public class FrontController extends HttpServlet {
                 } else if (EDIT_CIUDADANO.equalsIgnoreCase(action)) {
                     dir = helperAdministrativo.onEditCiudadano(request, response);
 
+                 
                     //Tareas
                 } else if ("view_tarefas".equalsIgnoreCase(action)) {
                     dir = helperAdministrativo.onSearchTarea(request, response,u);
@@ -155,6 +156,9 @@ public class FrontController extends HttpServlet {
                     dir = helperCiudadano.onViewDireccion(request, response, u);
                 } else if ("view_recibos".equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onListRecibos(request, response, u);
+              } else if (VIEW_TARXETA.equalsIgnoreCase(action)) {
+                    dir = "tarxeta.jsp";
+
                 } else if ("view_recibo".equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onViewRecibo(request, response);
                 } else if ("view_domiciliar".equalsIgnoreCase(action)) {
@@ -167,6 +171,9 @@ public class FrontController extends HttpServlet {
                     dir = helperCiudadano.onChangeDireccion(request, response, u);
                 } else if ("solicitar_cert".equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onSolicitarCert(request, response, u);
+                } else if ("tarx_aparcamento".equalsIgnoreCase(action)) {
+                    dir = helperCiudadano.onTarxetaAparcamento(request, response, u);
+                
                 }else if (VIEW_CERT_CORRIENTE_PAGO.equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onSolicitarCertCorrientePago(request, response, u);
                 } else {//Sin accion
