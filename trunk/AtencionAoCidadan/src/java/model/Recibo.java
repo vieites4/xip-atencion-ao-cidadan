@@ -44,7 +44,6 @@ public class Recibo implements Serializable {
     private GregorianCalendar dataCobro;
     private GregorianCalendar dataLimitePagamento;
     
-    //@Column(columnDefinition="tinyint")
     private String estado;
     
     @ManyToOne 
