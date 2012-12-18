@@ -66,7 +66,8 @@
                         <input type="hidden" name="id" value="${recibo.id}" />
                         <%--<p><input type="submit" value="Guardar cambios"/></p>--%>
                     </form>
-                    </p>
+                    <a href="FrontController?action=pay_recibo&id=${r.id}">Pagar Recibo</a>
+                    <br>
                     <a href="javascript:generarPDF ()">Xerar PDF</a>
                     <c:if test="${usuario.isAdministrativo()}">
                         <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${recibo.ciudadano.id}">Volver al listado de recibos y autoliquidaciones</a>
