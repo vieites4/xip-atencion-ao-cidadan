@@ -19,4 +19,4 @@ INSERT INTO recibo(
             esautoliquidacion, estado, importe, numerorecibo, referencia, 
             tipo, categoria_id, ciudadano_id)
 VALUES (124, 2010, '2010-10-01 10:10', '2010-10-01 10:10', '2010-10-01 10:10', '', 
-            false, 1, 10.0, 1, '0893hvp', 'rb', 2, 124);
+            false, 'Pendente', 10.0, 1, '0893hvp', 'rb', 2, 124);
