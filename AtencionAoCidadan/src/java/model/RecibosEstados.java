@@ -5,7 +5,7 @@ package model;
  * @author nessa
  */
 public enum RecibosEstados {
-    Pendente(0, "Pendete"), Pagado(1,"Pagado"), Anulado(2,"Anulado") ;
+    Pendente(0, "Pendente"), Pagado(1,"Pagado"), Anulado(2,"Anulado") ;
 
     private final int value;
     private final String nombre;
