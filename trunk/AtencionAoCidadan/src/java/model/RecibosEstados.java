@@ -20,6 +20,5 @@ public enum RecibosEstados {
     
     public String getNombre(){
         return nombre;
-    }
-    
+    }  
 }

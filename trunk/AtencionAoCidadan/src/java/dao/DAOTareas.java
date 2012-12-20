@@ -38,7 +38,10 @@ public class DAOTareas {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        c = (Tarea) session.load(Tarea.class, id);
+        //c = (Ciudadano) session.load(Ciudadano.class, id);
+        c = (Tarea) session.createCriteria(Tarea.class).
+                add(Restrictions.idEq(id)).
+                uniqueResult();
         session.getTransaction().commit();
 
         return c;
