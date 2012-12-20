@@ -16,7 +16,7 @@ INSERT INTO recibo(
             esautoliquidacion, estado, importe, numerorecibo, referencia, 
             tipo, categoria_id, ciudadano_id)
     VALUES (1, 2010, '2010-10-01 10:10', '2010-10-01 10:10', '2010-10-01 10:10', '', 
-            false, 1, 10.0, 1, '234s234', 
+            false, 'Pendente', 10.0, 1, '234s234', 
             'rb', 1, 24);
 */
 
