@@ -126,7 +126,7 @@ public class FrontController extends HttpServlet {
                 } else if ("view_cert_padron".equalsIgnoreCase(action)) {
                     dir = "getCertificado.jsp";
                 } else if ("view_direccion".equalsIgnoreCase(action)) {
-                    dir = "cambioDireccion.jsp";
+                    dir = helperCiudadano.onViewDireccion(request,response,u);
                 } else if ("view_buscar".equalsIgnoreCase(action)) {
                     dir = "findCiudadano.jsp";
                 } else {//Sin accion
@@ -173,7 +173,8 @@ public class FrontController extends HttpServlet {
                     dir = helperCiudadano.onSolicitarCert(request, response, u);
                 } else if ("tarx_aparcamento".equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onTarxetaAparcamento(request, response, u);
-                
+                } else if ("pay_recibo".equalsIgnoreCase(action)) {
+                    dir = helperCiudadano.onPayRecibo(request, response);
                 }else if (VIEW_CERT_CORRIENTE_PAGO.equalsIgnoreCase(action)) {
                     dir = helperCiudadano.onSolicitarCertCorrientePago(request, response, u);
                 } else {//Sin accion

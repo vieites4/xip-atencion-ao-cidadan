@@ -161,4 +161,12 @@ public String onTarxetaAparcamento(HttpServletRequest request, HttpServletRespon
 
         return "index.jsp";
     }
+    
+    public String onPayRecibo(HttpServletRequest request, HttpServletResponse response) {
+        
+        Long id = Long.parseLong(request.getParameter("id"));
+        Recibo r = DAORecibos.getInstance().getById(id);
+        request.setAttribute("recibo", r);
+        return "recibo.jsp";
+    }
 }

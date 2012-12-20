@@ -223,5 +223,28 @@ public class DAOHelperAdministrativo {
         request.setAttribute("ver", true);
         return "recibo.jsp";
     }
-
+    
+    public String onSolveTarea(HttpServletRequest request, HttpServletResponse response,Usuario u)throws IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Tarea t = DAOTareas.getInstance().getById(id);
+        if(t==null){
+           request.setAttribute("error_cause", "La Tarea ya no existe en los registros");  
+            
+        } else{
+            String Tipo = t.getTipo();
+            Ciudadano c = t.getRealizadaPor().getCiudadano();
+            if("Cambio de Domicilio".equalsIgnoreCase(Tipo)){
+                //c.setDireccion(t.getDescripcion());
+                request.setAttribute("top_message",t.getDescripcion() +"guardada para "+ t.getRealizadaPor().getUsuario() );
+                t.setEstado("Resuelta");
+            } else if("Solicitud de Certificado de Empadronamiento".equalsIgnoreCase(Tipo)){
+                request.setAttribute("top_message", "Certificado Emitido para "+ t.getRealizadaPor().getUsuario() );
+                t.setEstado("Resuelta");
+                DAOTareas.getInstance().saveOrUpdate(t);
+            }
+            
+        }
+        return onSearchTarea(request,response,u); 
+    }
+     
 }
