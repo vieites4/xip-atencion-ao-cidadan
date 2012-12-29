@@ -23,5 +23,6 @@
     <mapping class="model.RecibosCategoria"/>
     <mapping class="model.CuentaBancaria"/>
     <mapping class="model.Domiciliacion"/>
+    <mapping class="model.Mensaje"/>
   </session-factory>
 </hibernate-configuration>

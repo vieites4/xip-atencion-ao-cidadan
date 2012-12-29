@@ -1,20 +1,11 @@
 package helpers;
 
 import dao.DAOCiudadanos;
-import dao.DAOCuentaBancaria;
-import dao.DAODomiciliacion;
-import dao.DAORecibos;
-import dao.DAORecibosCategorias;
+import dao.DAOMensajes;
 import dao.DAOUsuarios;
-import java.io.IOException;
-import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.CuentaBancaria;
-import model.Domiciliacion;
-import model.Recibo;
-import model.RecibosCategoria;
 import model.Usuario;
 
 /**
@@ -43,7 +34,9 @@ public class LoginHelper {
                     if (u.isCiudadano()) {
                         u.setCiudadano(DAOCiudadanos.getInstance().getByUser(u));
                     }
-                    
+                    //mensajes
+                    u.setMensajesRecibidos(DAOMensajes.getInstance().getByFilters(u.getId(), null));
+                    //u.setMensajesEnviados(DAOMensajes.getInstance().getByFilters(null, u.getId()));
                     request.getSession().setAttribute("usuario", u);
                     request.setAttribute("top_message", "Bienvenido!");// + u.getCiudadano().getNombre() + "!");
                 } else {
