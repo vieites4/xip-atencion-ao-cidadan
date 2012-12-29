@@ -66,11 +66,30 @@
                         <input type="hidden" name="id" value="${recibo.id}" />
                         <%--<p><input type="submit" value="Guardar cambios"/></p>--%>
                     </form>
-                    <c:if test="${recibo.estado == '0'}">
+                    <c:if test="${recibo.estado == 'Pendente'}">
                         <a href="payRecibo.jsp">Pagar Recibo</a>
                         <br>
                     </c:if>
+                    
+                    <h3>Xerar PDF</h3>
                     <a href="javascript:generarPDF ()">Xerar PDF</a>
+                    <h3>Domiciliar</h3>
+                    <c:if test="${domiciliado}">
+                        <p>Está domiciliado</p>
+                    </c:if>
+                    <c:if test="${!domiciliado && domiciliable}">
+                        <p>Domiciliar siguientes recibos:</p>
+                        <form action="FrontController" method="post">
+                        <input type="hidden" name="action" value="add_domiciliacion"/>
+                        <input type="hidden" name="categoria" value="${recibo.categoria.id}"/>
+                        <input type="hidden" name="referencia" value="${recibo.referencia}"/>
+                        <fieldset>
+                        <legend>Datos da conta bancaria</legend>
+                        <%@include file="fragmentos/cuentaBancariaFields.jspf" %>
+                        <p><input type="submit" value="Domiciliar"/></p>
+                        </fieldset>
+                    </c:if>
+                    
                     <c:if test="${usuario.isAdministrativo()}">
                         <a class="enlace" href="FrontController?action=view_recibos&ciudadano=${recibo.ciudadano.id}">Volver al listado de recibos y autoliquidaciones</a>
  
