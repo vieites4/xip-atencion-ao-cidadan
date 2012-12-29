@@ -1,10 +1,12 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -29,6 +31,12 @@ public class Usuario implements Serializable{
     
     @OneToOne(mappedBy = "usuario")
     private Ciudadano ciudadano;
+    
+    @OneToMany(mappedBy = "destinatario")
+    private List<Mensaje> mensajesRecibidos = new ArrayList<Mensaje>();
+    
+    @OneToMany(mappedBy = "remitente")
+    private List<Mensaje> mensajesEnviados = new ArrayList<Mensaje>();
     
     /* Constructores */
     public Usuario(){}
@@ -120,6 +128,29 @@ public class Usuario implements Serializable{
     public String toString() {
         return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", email=" + email + ", movil=" + movil + ", password=" + password + ", tipo=" + tipo + '}';
     }
+
+    public List<Mensaje> getMensajesRecibidos() {
+        return mensajesRecibidos;
+    }
+
+    public void setMensajesRecibidos(List<Mensaje> mensajes) {
+        this.mensajesRecibidos = mensajes;
+    }
     
+    public List<Mensaje> getMensajesEnviados() {
+        return mensajesEnviados;
+    }
+
+    public void setMensajesEnviados(List<Mensaje> mensajes) {
+        this.mensajesEnviados = mensajes;
+    }
     
+
+    public int numeroMensajesNoLeidos(){
+        int num= 0;
+        for(int i=0; i<mensajesRecibidos.size(); i++){
+            if(!mensajesRecibidos.get(i).isEstaLeido()){ num++; }
+        }
+        return num;
+    }
 }
