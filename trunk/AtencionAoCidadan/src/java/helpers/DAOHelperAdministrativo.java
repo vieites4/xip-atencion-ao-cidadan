@@ -5,8 +5,6 @@ import dao.DAORecibos;
 import dao.DAOTareas;
 import dao.DAOUsuarios;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -232,7 +230,6 @@ public class DAOHelperAdministrativo {
             
         } else{
             String Tipo = t.getTipo();
-            Ciudadano c = t.getRealizadaPor().getCiudadano();
             if("Cambio de Domicilio".equalsIgnoreCase(Tipo)){
                 //c.setDireccion(t.getDescripcion());
                 request.setAttribute("top_message",t.getDescripcion() +"guardada para "+ t.getRealizadaPor().getUsuario() );
