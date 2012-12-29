@@ -3,6 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<style>
+    .asunto { width: 400px; } 
+</style>
+
 <c:set var="mensajes" value="${usuario.mensajesRecibidos}" />
 <c:if test="${enviados}">
     <c:set var="mensajes" value="${usuario.mensajesEnviados}" />
@@ -24,20 +28,28 @@
                     <th>Remitente</th>
                     <th>Leído</th>
                 </c:if>
-                <th>Ver</th>
+                <th>Acciones</th>
             </tr>
             <c:forEach var="m" items="${mensajes}">
                 <tr>    
-                    <td>${m.asunto}</td>
+                    <td class="asunto">${m.asunto}</td>
                     <td><fmt:formatDate pattern="hh:mm dd-MM-yyyy" value="${m.fecha.getTime()}" ></fmt:formatDate></td>
                     <c:if test="${enviados}">
                         <td>${m.destinatario.usuario}</td>
                     </c:if>
                     <c:if test="${!enviados}">
                         <td>${m.remitente.usuario}</td>
-                        <td>${m.estaLeido}</td>
+                        <c:if test="${m.estaLeido}">
+                            <td>Sí <a href="FrontController?action=marcar_mensaje&leido=false&id=${m.id}">(Marcar como no leido)</a></td>
+                        </c:if>
+                        <c:if test="${!m.estaLeido}">
+                            <td>No <a href="FrontController?action=marcar_mensaje&leido=true&id=${m.id}">(Marcar como leido)</a></td>
+                        </c:if>
                     </c:if>
-                    <td><a href="javascript://">Ver</a></td>
+                    <td>
+                        <a href="javascript://">Ver mensaje</a> | 
+                        <a href="FrontController?action=borrar_mensaje&id=${m.id}">Borrar</a>
+                    </td>
                 </tr>
                 <c:choose>
                     <c:when test="${enviados}">

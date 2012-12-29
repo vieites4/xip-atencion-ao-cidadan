@@ -2,6 +2,7 @@ package servlet;
 
 import helpers.DAOHelperAdministrativo;
 import helpers.DAOHelperCiudadano;
+import helpers.DAOHelperMensajes;
 import helpers.LoginHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,11 +38,14 @@ public class FrontController extends HttpServlet {
     private static String VIEW_TARXETA = "view_tarxeta_aparcamento";
     private static String VIEW_BUZON = "view_buzon";
     private static String SEND_MENSAJE = "send_mensaje";
+    private static String MARCAR_MENSAJE = "marcar_mensaje";
+    private static String BORRAR_MENSAJE = "borrar_mensaje";
     
     private static String LOGIN = "LOGIN";
     private static String LOGOUT = "LOGOUT";
     private static DAOHelperAdministrativo helperAdministrativo = new DAOHelperAdministrativo();
     private static DAOHelperCiudadano helperCiudadano = new DAOHelperCiudadano();
+    private static DAOHelperMensajes helperMensajes = new DAOHelperMensajes();
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -94,11 +98,13 @@ public class FrontController extends HttpServlet {
             } else if( u!= null){  
                 
                 if (VIEW_BUZON.equalsIgnoreCase(action)){
-                    dir = helperCiudadano.onListMensajes(request, response, u);
+                    dir = helperMensajes.onListMensajes(request, response, u);
                 } else if (SEND_MENSAJE.equalsIgnoreCase(action)){
-                    dir = helperCiudadano.onSendMensaje(request, response, u);
-                
-                
+                    dir = helperMensajes.onSendMensaje(request, response, u);
+                } else if (MARCAR_MENSAJE.equalsIgnoreCase(action)){
+                    dir = helperMensajes.onMarcarMensaje(request, response, u);
+                } else if (BORRAR_MENSAJE.equalsIgnoreCase(action)){
+                    dir = helperMensajes.onBorrarMensaje(request, response, u);
                 
                 /*----------------------------------*
                  * ADMINISTRATIVO
@@ -109,7 +115,7 @@ public class FrontController extends HttpServlet {
                     if (ADD_CIUDADANO.equalsIgnoreCase(action)) {
                         dir = helperAdministrativo.onAddCiudadano(request, response);
                     } else if (UPDATE_CIUDADANO.equalsIgnoreCase(action)) {
-                        dir = helperAdministrativo.onUpdateCiudadano(request, response);
+                        dir = helperAdministrativo.onUpdateCiudadano(request, response, u);
                     } else if (SEARCH_CIUDADANO.equalsIgnoreCase(action)) {
                         dir = helperAdministrativo.onSearchCiudadano(request, response);
                     } else if (VIEW_CIUDADANO.equalsIgnoreCase(action)) {
