@@ -6,6 +6,7 @@ import dao.DAORecibos;
 import dao.DAORecibosCategorias;
 import dao.DAOTareas;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +41,13 @@ public class DAOHelperCiudadano {
         Long id = Long.parseLong(request.getParameter("id"));
         Recibo r = DAORecibos.getInstance().getById(id);
         request.setAttribute("recibo", r);
+        
+        List<Domiciliacion> ds = DAODomiciliacion.getInstance().getByFilters(null, r.getCategoria().getId(), r.getReferencia());
+        boolean domiciliado = (ds!=null && !ds.isEmpty());
+        boolean domiciliable = r.getCategoria().isPeriodico();
+        request.setAttribute("domiciliado", domiciliado);
+        request.setAttribute("domiciliable", domiciliable);
+        
         return "recibo.jsp";
     }
 

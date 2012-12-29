@@ -56,7 +56,7 @@ public class DAODomiciliacion {
      * @param idCiudadano
      * @return 
      */
-    public List<Domiciliacion> getByFilters(Long idCiudadano){
+    public List<Domiciliacion> getByFilters(Long idCiudadano, Long idCategoria, String referencia){
         List<Domiciliacion> list = null;
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -65,6 +65,12 @@ public class DAODomiciliacion {
         Criteria c = session.createCriteria(Domiciliacion.class);
         if(idCiudadano != null ){
             c.add(Restrictions.eq("ciudadano.id", idCiudadano ));
+        }
+        if(idCategoria != null){
+            c.add(Restrictions.eq("categoria.id", idCategoria ));
+        }
+        if(referencia != null && !referencia.isEmpty()){
+            c.add(Restrictions.eq("referencia", referencia ));
         }
         /* TODO: resto de filtros */
         list = (List<Domiciliacion>)c.list();
