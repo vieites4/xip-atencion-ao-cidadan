@@ -2,11 +2,9 @@ package helpers;
 
 import dao.DAOCuentaBancaria;
 import dao.DAODomiciliacion;
-import dao.DAOMensajes;
 import dao.DAORecibos;
 import dao.DAORecibosCategorias;
 import dao.DAOTareas;
-import dao.DAOUsuarios;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Ciudadano;
 import model.CuentaBancaria;
 import model.Domiciliacion;
-import model.Mensaje;
 import model.Recibo;
 import model.RecibosCategoria;
 import model.RecibosEstados;
@@ -176,38 +173,5 @@ public String onTarxetaAparcamento(HttpServletRequest request, HttpServletRespon
         return "recibo.jsp";
     }
     
-    public String onListMensajes(HttpServletRequest request, HttpServletResponse response, Usuario u) throws IOException {
-        u.setMensajesEnviados(DAOMensajes.getInstance().getByFilters(null, u.getId()));
-        /*for(int i=0; i<u.getMensajesEnviados().size(); i++){
-            Mensaje m = u.getMensajesEnviados().get(i);
-            m = DAOMensajes.getInstance().getById(m.getId());
-            u.getMensajesEnviados().set(i, m);
-        }*/
-        u.setMensajesRecibidos(DAOMensajes.getInstance().getByFilters(u.getId(), null));
-        /*for(int i=0; i<u.getMensajesRecibidos().size(); i++){
-            Mensaje m = u.getMensajesRecibidos().get(i);
-            m = DAOMensajes.getInstance().getById(m.getId());
-            u.getMensajesRecibidos().set(i, m);
-        }*/
-        return "buzonMensajes.jsp";
-    }
     
-    public String onSendMensaje(HttpServletRequest request, HttpServletResponse response, Usuario u) throws IOException {
-        try{
-            Mensaje m = new Mensaje();
-            m.setAsunto(request.getParameter("asunto"));
-            m.setTexto(request.getParameter("texto"));
-            m.setRemitente(u);
-            m.setDestinatario(DAOUsuarios.getInstance().getByUserName(request.getParameter("destinatario")));
-            DAOMensajes.getInstance().saveOrUpdate(m);
-            
-            request.setAttribute("top_message", "Mensaje enviado correctamente!");
-            return onListMensajes(request, response, u);
-        } catch (Exception e) {
-            // log error
-            // redirect to error page or show error message
-            request.setAttribute("top_message", "Error al enviar el mensaje " );
-            return "buzonMensajes.jsp";
-        }
-    }
 }

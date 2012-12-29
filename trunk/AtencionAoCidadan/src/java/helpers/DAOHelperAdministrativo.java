@@ -80,7 +80,7 @@ public class DAOHelperAdministrativo {
     }
 
     // @TODO Completar
-    public String onUpdateCiudadano(HttpServletRequest request, HttpServletResponse response) {
+    public String onUpdateCiudadano(HttpServletRequest request, HttpServletResponse response, Usuario u) {
 
         try {
             Long id = Long.parseLong(request.getParameter("id"));
@@ -106,6 +106,9 @@ public class DAOHelperAdministrativo {
                     c.onCreate();
                    
                     request.setAttribute("top_message", "Ciudadano '" + c.getDni() + "' modificado correctamente!");
+                    DAOHelperMensajes.enviarMensaje("Modificación de datos", "Estimado ciudadano " + c.getNombre() 
+                            + " He modificado sus datos para corregir errores. Para más inforción contacte con "
+                            + "el teléfono 982 379 251. Concello de Antas de Ulla.", u, id);
                 }
                 else{
                     request.setAttribute("error_cause", "Los datos proporcionados no son válidos");

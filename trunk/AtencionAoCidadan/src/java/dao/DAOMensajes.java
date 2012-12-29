@@ -4,6 +4,7 @@ import java.util.List;
 import model.Mensaje;
 import org.hibernate.Criteria;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -39,6 +40,18 @@ public class DAOMensajes {
         return c;
 
     }
+    
+    /**
+     * Guarda o actualiza los datos de un item en función de si está o no en la base de datos
+     * @param c 
+     */
+    public void delete(Mensaje c) {
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.delete(c);
+        session.getTransaction().commit();
+    }
 
     
     /**
@@ -71,6 +84,7 @@ public class DAOMensajes {
         if(remitenteId != null ){
             c.add(Restrictions.eq("remitente.id", remitenteId ));
         }
+        c.addOrder(Property.forName("fecha").desc());
         /* TODO: resto de filtros */
         list = (List<Mensaje>)c.list();
 

@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.GregorianCalendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,6 +18,8 @@ public class Mensaje implements Serializable{
     @GeneratedValue
     private Long id;
     private String asunto;
+    
+    @Column(length=9000, columnDefinition="text")
     private String texto;
     private boolean estaLeido = false;
     private GregorianCalendar fecha;
