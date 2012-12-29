@@ -19,7 +19,6 @@ public class DAOMensajes {
     public static DAOMensajes getInstance() {
         return instance;
     }
-
     
     
     /**
@@ -56,18 +55,21 @@ public class DAOMensajes {
     
     /**
      * 
-     * @param idCiudadano
+     * @param idUsuario
      * @return 
      */
-    public List<Mensaje> getByFilters(Long idUsuario){
+    public List<Mensaje> getByFilters(Long destinatarioId, Long remitenteId){
         List<Mensaje> list = null;
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         // consulta filtrando por ...
         Criteria c = session.createCriteria(Mensaje.class);
-        if(idUsuario != null ){
-            c.add(Restrictions.eq("usuario.id", idUsuario ));
+        if(destinatarioId != null ){
+            c.add(Restrictions.eq("destinatario.id", destinatarioId ));
+        }
+        if(remitenteId != null ){
+            c.add(Restrictions.eq("remitente.id", remitenteId ));
         }
         /* TODO: resto de filtros */
         list = (List<Mensaje>)c.list();

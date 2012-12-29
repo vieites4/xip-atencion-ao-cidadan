@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,8 +16,10 @@ public class Mensaje implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
+    private String asunto;
     private String texto;
-    private boolean estaLeido;
+    private boolean estaLeido = false;
+    private GregorianCalendar fecha;
     
     @ManyToOne
     private Usuario destinatario;
@@ -25,7 +28,9 @@ public class Mensaje implements Serializable{
     private Usuario remitente;
     
     
-    public Mensaje(){}
+    public Mensaje(){
+        fecha = new GregorianCalendar();
+    }
 
     public Long getId() {
         return id;
@@ -65,6 +70,22 @@ public class Mensaje implements Serializable{
 
     public void setRemitente(Usuario remitente) {
         this.remitente = remitente;
+    }
+
+    public GregorianCalendar getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(GregorianCalendar fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
     }
     
     
