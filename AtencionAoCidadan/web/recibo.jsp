@@ -78,6 +78,7 @@
                         <p>Está domiciliado</p>
                     </c:if>
                     <c:if test="${!domiciliado && domiciliable}">
+                        <c:set var="ver" value="false" />
                         <p>Domiciliar siguientes recibos:</p>
                         <form action="FrontController" method="post">
                         <input type="hidden" name="action" value="add_domiciliacion"/>
