@@ -16,9 +16,9 @@
                     <h3>Datos del Recibo</h3>
                     <label>
                     Numero de recibo: 
-                    <input name="numrecibo" type="text" disabled="" value="recibo.numero" /><br/>
+                    <input name="numrecibo" type="text" disabled="" value=id /><br/>
                     Categoria: 
-                    <input name="categoria" type="text" disabled="" value="recibo.categoria.nombre" /><br/>
+                    <input name="categoria" type="text" disabled="" value=${id} /><br/>
                     Importe Total: <input name="importe" type="text" disabled="" value="recibo.importe" /><br/>
                     <input name="id" type="hidden" value="recibo.id" /><br/>
                     <h3>Datos de Pago</h3>
