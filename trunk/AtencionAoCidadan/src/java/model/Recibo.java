@@ -43,7 +43,7 @@ public class Recibo implements Serializable {
     private GregorianCalendar dataCobro;
     private GregorianCalendar dataLimitePagamento;
     
-    private String estado;
+    private int estado;
     
     @ManyToOne 
     private RecibosCategoria categoria;
@@ -123,12 +123,12 @@ public class Recibo implements Serializable {
         this.categoria = categoria;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(RecibosEstados estado) {
-        this.estado = estado.getNombre();
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public String getReferencia() {
