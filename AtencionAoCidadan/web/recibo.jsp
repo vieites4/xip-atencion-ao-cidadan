@@ -66,9 +66,20 @@
                         <input type="hidden" name="id" value="${recibo.id}" />
                         <%--<p><input type="submit" value="Guardar cambios"/></p>--%>
                     </form>
-                    <c:if test="${recibo.estado == 'Pendente'}">
-                        <a href="payRecibo.jsp">Pagar Recibo</a>
+                    <c:if test="${recibo.estado == '0'}">
                         <br>
+                        <fieldset>
+                        <legend>Recibo Pendiente de Pago</legend>
+                        Numero de Tarjeta: <br/>
+                        <input name="numtarjeta" type="text" /><br/>
+                        Nombre del Titular: <br/>
+                        <input name="titular" type="text" /><br/>
+                        Fecha de Caducidad de Tarjeta: <br/>
+                        <input name="fechacad" type="text" /><br/>
+                        Numero de Seguridad: <br/>
+                        <input name="fechacad" type="text" /><br/>
+                        <br><a href="FrontController?action=pay_recibo&id=${recibo.id}">Pagar Recibo</a>
+                        </fieldset><br>
                     </c:if>
                     
                     <h3>Xerar PDF</h3>
