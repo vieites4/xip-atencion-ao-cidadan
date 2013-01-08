@@ -146,7 +146,7 @@ public String onTarxetaAparcamento(HttpServletRequest request, HttpServletRespon
             int estado = RecibosEstados.Pendente.getValue();
 
             try {
-                estado = Integer.parseInt(r.getEstado());
+                estado = r.getEstado();
             } catch (Exception e) {
                 log.log(Level.SEVERE, "Error al solicitar certificado de corriente de pago", e);
             }
@@ -173,12 +173,15 @@ public String onTarxetaAparcamento(HttpServletRequest request, HttpServletRespon
         return "index.jsp";
     }
     
-    public String onPayRecibo(HttpServletRequest request, HttpServletResponse response) {
+    public String onPayRecibo(HttpServletRequest request, HttpServletResponse response, Usuario u)throws IOException {
         
         Long id = Long.parseLong(request.getParameter("id"));
         Recibo r = DAORecibos.getInstance().getById(id);
-        request.setAttribute("recibo", r);
-        return "recibo.jsp";
+        request.setAttribute("top_message", "Recibo Pagado: "+ r.getNumeroRecibo());
+        r.setEstado(1);
+        DAORecibos.getInstance().saveOrUpdate(r);
+      
+        return onListRecibos(request, response, u);
     }
     
     

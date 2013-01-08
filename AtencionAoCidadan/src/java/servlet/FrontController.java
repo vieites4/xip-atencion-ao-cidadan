@@ -192,7 +192,7 @@ public class FrontController extends HttpServlet {
                     } else if ("tarx_aparcamento".equalsIgnoreCase(action)) {
                         dir = helperCiudadano.onTarxetaAparcamento(request, response, u);
                     } else if ("pay_recibo".equalsIgnoreCase(action)) {
-                        dir = helperCiudadano.onPayRecibo(request, response);
+                        dir = helperCiudadano.onPayRecibo(request, response, u);
                     } else if (VIEW_CERT_CORRIENTE_PAGO.equalsIgnoreCase(action)) {
                         dir = helperCiudadano.onSolicitarCertCorrientePago(request, response, u);
                     } else {//Sin accion
