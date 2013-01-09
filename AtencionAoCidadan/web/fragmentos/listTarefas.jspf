@@ -1,6 +1,36 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<script type="text/javascript" src="js/jspdf/libs/base64.js"></script>
+        <script type="text/javascript" src="js/jspdf/libs/sprintf.js"></script>
+        <script type="text/javascript" src="js/jspdf/jspdf.js"></script>
+
+        <script type="text/javascript">
+    
+            function generarPDF () {
+                var doc = new jsPDF();
+                doc.setFontSize(25);
+                doc.text(20, 20, 'AYUNDAMIENTO DE LA XUNTA DE GALICIA');
+                doc.setFontSize(23);
+                doc.text(20, 40, 'CERTIFICADO DE EMPADRONAMIENTO');
+                doc.setFontSize(23);
+                doc.text(20, 60, 'D. ALVARO OBREGÓN');
+                doc.setFontSize(23);
+                doc.text(20, 70, 'SECRETARIO DEL AYUNDAMIENTO');
+                doc.setFontSize(20);
+                doc.text(20, 90, 'CERTIFICO: '+ '${t.realizadaPor.usuario}');
+                doc.setFontSize(16);
+                doc.text(20, 110, 'Que segun resulta de los Registros, Padrones y demas datos ');
+                doc.text(20,120, 'en esta Secretaría de mi cargo ante toda la jurisdicción que');
+                doc.setFontSize(16);
+                doc.text(20, 130, 'LAS PERSONAS MENCIONADAS SON RESIDENTES EN ');
+                doc.text(20, 140, 'ESTE TERMINO MUNICIPAL Y ESTAN EMPADRONADAS EN');
+                
+  doc.output('datauri');
+            }
+
+        </script>
 <c:choose>
     <c:when test="${listTarefas == null || listTarefas.isEmpty()}">
         <p>No hay resultados</p>
@@ -27,7 +57,8 @@
                     <td>${t.tipo}</td>
                     <td>${t.realizadaPor.usuario}</td>
                     
-                     <td><a href="FrontController?action=view_tarea&id=${t.id}">Ver</a></td>
+                     <td><a href="FrontController?action=view_tarea&id=${t.id}">Ver</a> - - <a href="FrontController?action=solve_tarea&id=${t.id}">Resolver</a></td>
+                     <td><a href="javascript:generarPDF ()" >Generar PDF</a>
                 </tr>
             </c:forEach>
         </table>
