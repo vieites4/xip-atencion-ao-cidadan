@@ -237,6 +237,7 @@ public class DAOHelperAdministrativo {
                 //c.setDireccion(t.getDescripcion());
                 request.setAttribute("top_message",t.getDescripcion() +"guardada para "+ t.getRealizadaPor().getUsuario() );
                 t.setEstado("Resuelta");
+                DAOTareas.getInstance().saveOrUpdate(t);
             } else if("Solicitud de Certificado de Empadronamiento".equalsIgnoreCase(Tipo)){
                 request.setAttribute("top_message", "Certificado Emitido para "+ t.getRealizadaPor().getUsuario() );
                 t.setEstado("Resuelta");
